@@ -91,6 +91,63 @@ void hill() {
     glEnd();
 
 }
+void umbrella() {
+    // First Umbrella (already defined)
+    glColor3f(0.5f, 0.35f, 0.05f); // Brown color for the pole
+    glBegin(GL_LINES);
+    glVertex2f(200, 100); // Bottom of the pole (P1)
+    glVertex2f(200, 200); // Top of the pole (O1)
+    glEnd();
+
+    glColor3f(1.0f, 0.0f, 0.0f); // Red color for the umbrella top
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2f(200, 200); // Center of the semicircle (O1)
+    for (int i = 0; i <= 180; i++) {
+        float angle = i * 3.14159 / 180; // Convert degrees to radians
+        float x = 200 + 70 * cos(angle); // Horizontal radius: 70, adjust the center
+        float y = 200 + 70 * sin(angle); // Vertical radius: 70, adjust the center
+        glVertex2f(x, y);
+    }
+    glEnd();
+
+    // Second Umbrella
+    glColor3f(0.5f, 0.35f, 0.05f); // Brown color for the pole
+    glBegin(GL_LINES);
+    glVertex2f(500, 100); // Bottom of the pole (P2)
+    glVertex2f(500, 200); // Top of the pole (O2)
+    glEnd();
+
+    glColor3f(1.0f, 0.0f, 0.0f); // Red color for the umbrella top
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2f(500, 200); // Center of the semicircle (O2)
+    for (int i = 0; i <= 180; i++) {
+        float angle = i * 3.14159 / 180; // Convert degrees to radians
+        float x = 500 + 70 * cos(angle); // Horizontal radius: 70, adjust the center
+        float y = 200 + 70 * sin(angle); // Vertical radius: 70, adjust the center
+        glVertex2f(x, y);
+    }
+    glEnd();
+
+    // Third Umbrella
+    glColor3f(0.5f, 0.35f, 0.05f); // Brown color for the pole
+    glBegin(GL_LINES);
+    glVertex2f(900, 100); // Bottom of the pole (P3)
+    glVertex2f(900, 200); // Top of the pole (O3)
+    glEnd();
+
+    glColor3f(1.0f, 0.0f, 0.0f); // Red color for the umbrella top
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2f(900, 200); // Center of the semicircle (O3)
+    for (int i = 0; i <= 180; i++) {
+        float angle = i * 3.14159 / 180; // Convert degrees to radians
+        float x = 900 + 70 * cos(angle); // Horizontal radius: 70, adjust the center
+        float y = 200 + 70 * sin(angle); // Vertical radius: 70, adjust the center
+        glVertex2f(x, y);
+    }
+    glEnd();
+}
+
+
 
 
 void draw_object() {
@@ -124,6 +181,9 @@ void draw_object() {
     // Draw the boats
     boat();
     hill();
+    // Draw the umbrella
+    umbrella();
+
 }
 
 void display(void) {
