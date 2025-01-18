@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1737207503 source:c:\users\mdmam\onedrive\desktop\graphic-project\final-project\coxbazar\main.cpp
+1737209506 source:c:\users\mdmam\onedrive\desktop\graphic-project\final-project\coxbazar\main.cpp
 	<GL/glut.h>
 	<stdio.h>
 	<math.h>
