@@ -47,7 +47,7 @@ void boat()
 }
 
 void hill() {
-    // Hill drawing code remains unchanged
+    // Hill drawing
     glColor3f(0.0f, 1.0f, 0.0f);
     glBegin(GL_TRIANGLES);
     glVertex2f(150, 600);
@@ -87,24 +87,63 @@ void hill() {
 }
 
 void umbrella() {
-    // Umbrella drawing code remains unchanged
-    glColor3f(0.5f, 0.35f, 0.05f);
+    // First Umbrella (already defined)
+    glColor3f(0.5f, 0.35f, 0.05f); // Brown color for the pole
     glBegin(GL_LINES);
-    glVertex2f(200, 100);
-    glVertex2f(200, 200);
+    glVertex2f(200, 100); // Bottom of the pole (P1)
+    glVertex2f(200, 200); // Top of the pole (O1)
     glEnd();
 
-    glColor3f(1.0f, 0.0f, 0.0f);
+    glColor3f(1.0f, 0.0f, 0.0f); // Red color for the umbrella top
     glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(200, 200);
+    glVertex2f(200, 200); // Center of the semicircle (O1)
     for (int i = 0; i <= 180; i++) {
-        float angle = i * 3.14159 / 180;
-        float x = 200 + 70 * cos(angle);
-        float y = 200 + 70 * sin(angle);
+        float angle = i * 3.14159 / 180; // Convert degrees to radians
+        float x = 200 + 70 * cos(angle); // Horizontal radius: 70, adjust the center
+        float y = 200 + 70 * sin(angle); // Vertical radius: 70, adjust the center
+        glVertex2f(x, y);
+    }
+    glEnd();
+
+    // Second Umbrella
+    glColor3f(0.5f, 0.35f, 0.05f); // Brown color for the pole
+    glBegin(GL_LINES);
+    glVertex2f(500, 100); // Bottom of the pole (P2)
+    glVertex2f(500, 200); // Top of the pole (O2)
+    glEnd();
+
+    glColor3f(1.0f, 0.0f, 0.0f); // Red color for the umbrella top
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2f(500, 200); // Center of the semicircle (O2)
+    for (int i = 0; i <= 180; i++) {
+        float angle = i * 3.14159 / 180; // Convert degrees to radians
+        float x = 500 + 70 * cos(angle); // Horizontal radius: 70, adjust the center
+        float y = 200 + 70 * sin(angle); // Vertical radius: 70, adjust the center
+        glVertex2f(x, y);
+    }
+    glEnd();
+
+    // Third Umbrella
+    glColor3f(0.5f, 0.35f, 0.05f); // Brown color for the pole
+    glBegin(GL_LINES);
+    glVertex2f(900, 100); // Bottom of the pole (P3)
+    glVertex2f(900, 200); // Top of the pole (O3)
+    glEnd();
+
+    glColor3f(1.0f, 0.0f, 0.0f); // Red color for the umbrella top
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2f(900, 200); // Center of the semicircle (O3)
+    for (int i = 0; i <= 180; i++) {
+        float angle = i * 3.14159 / 180; // Convert degrees to radians
+        float x = 900 + 70 * cos(angle); // Horizontal radius: 70, adjust the center
+        float y = 200 + 70 * sin(angle); // Vertical radius: 70, adjust the center
         glVertex2f(x, y);
     }
     glEnd();
 }
+
+
+
 
 void draw_object() {
     // Sky
@@ -171,7 +210,6 @@ int main(int argc, char** argv) {
 
     glutDisplayFunc(display);
     glutTimerFunc(30, updateBoatPosition, 0); // Start the timer for animation
-
     init();
     glutMainLoop();
     return 0;
