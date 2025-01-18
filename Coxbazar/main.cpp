@@ -235,6 +235,44 @@ void cloud5() {
     }
     glEnd();}
 
+    // 3 full cloud
+
+void cloud6() {
+   glColor3f(1.0f, 1.0f, 1.0f);
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2f(350, 850); // Center of the sun
+    for (int i = 0; i <= 360; i++) {
+        float angle = i * 3.14159 / 180; // Convert degrees to radians
+        float x = 350 + 80 * cos(angle); // Horizontal radius: 80
+        float y = 850 + 80 * sin(angle); // Vertical radius: 80
+        glVertex2f(x, y);
+    }
+    glEnd();
+}
+void cloud7() {
+    glColor3f(1.0f, 1.0f, 1.0f);
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2f(400, 850); // Center of the sun
+    for (int i = 0; i <= 360; i++) {
+        float angle = i * 3.14159 / 180; // Convert degrees to radians
+        float x = 400 + 80 * cos(angle); // Horizontal radius: 80
+        float y = 850 + 80 * sin(angle); // Vertical radius: 80
+        glVertex2f(x, y);
+    }
+    glEnd();
+}
+void cloud8() {
+   glColor3f(1.0f, 1.0f, 1.0f);
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2f(372, 850); // Center of the sun
+    for (int i = 0; i <= 360; i++) {
+        float angle = i * 3.14159 / 180; // Convert degrees to radians
+        float x = 380 + 80 * cos(angle); // Horizontal radius: 80
+        float y = 790 + 80 * sin(angle); // Vertical radius: 80
+        glVertex2f(x, y);
+    }
+    glEnd();}
+
 void draw_object() {
     // Sky
     glColor3f(0.6196f, 0.9333f, 0.9960f);
@@ -251,6 +289,10 @@ void draw_object() {
     cloud3();
     cloud4();
     cloud5();
+    cloud6();
+    cloud7();
+    cloud8();
+
 
     // Sea
     glColor3f(0.0f, 0.5f, 0.8f);
