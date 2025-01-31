@@ -206,9 +206,9 @@ void draw_object() {
     sun();
 
     // Draw clouds at their current positions
-   drawCloud(700, 850); // Draw a cloud at (700, 850)
-drawCloud(900, 1050); // Draw another cloud at (900, 1050)
-
+  drawCloud(cloud1PosX, 850);   // Cloud 1
+    drawCloud(cloud2PosX, 1050);  // Cloud 2
+    drawCloud(cloud3PosX, 950);   // Cloud 3 (previously missing)
     // Sea
     glColor3f(0.0f, 0.5f, 0.8f);
     glBegin(GL_QUADS);
