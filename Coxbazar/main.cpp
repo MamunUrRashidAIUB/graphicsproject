@@ -3,9 +3,11 @@
 #include <math.h>
 
 float boatPosX = 0; // Horizontal position of the boats
+float cloud1PosX = 700; // Horizontal position of cloud 1
+float cloud2PosX = 900; // Horizontal position of cloud 2
+float cloud3PosX = 350; // Horizontal position of cloud 3
 
-void boat()
-{
+void boat() {
     glPushMatrix();
     glTranslatef(boatPosX, 0, 0); // Translate the boat horizontally based on boatPosX
 
@@ -47,7 +49,7 @@ void boat()
 }
 
 void hill() {
-    // Hill drawing
+    // Hill drawing (unchanged)
     glColor3f(0.0f, 1.0f, 0.0f);
     glBegin(GL_TRIANGLES);
     glVertex2f(150, 600);
@@ -86,12 +88,8 @@ void hill() {
     glEnd();
 }
 
-
-
-
-
 void umbrella() {
-    // First Umbrella (already defined)
+    // Umbrella drawing (unchanged)
     glColor3f(0.5f, 0.35f, 0.05f); // Brown color for the pole
     glBegin(GL_LINES);
     glVertex2f(200, 100); // Bottom of the pole (P1)
@@ -145,9 +143,9 @@ void umbrella() {
     }
     glEnd();
 }
-//sun
 
 void sun() {
+    // Sun drawing (unchanged)
     glColor3f(1.0f, 1.0f, 0.0f); // Yellow color for the sun
     glBegin(GL_TRIANGLE_FAN);
     glVertex2f(1100, 1000); // Center of the sun
@@ -160,118 +158,41 @@ void sun() {
     glEnd();
 }
 
-//1 full cloud
-void cloud() {
-   glColor3f(1.0f, 1.0f, 1.0f);
+void drawCloud(float centerX, float centerY) {
+    // Circle 1 (Left)
+    glColor3f(1.0f, 1.0f, 1.0f); // White color
     glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(700, 850); // Center of the sun
+    glVertex2f(centerX - 50, centerY); // Center of the first circle
     for (int i = 0; i <= 360; i++) {
         float angle = i * 3.14159 / 180; // Convert degrees to radians
-        float x = 700 + 80 * cos(angle); // Horizontal radius: 80
-        float y = 850 + 80 * sin(angle); // Vertical radius: 80
+        float x = (centerX - 50) + 40 * cos(angle); // Radius: 40
+        float y = centerY + 40 * sin(angle);
         glVertex2f(x, y);
     }
     glEnd();
-}
-void cloud1() {
-    glColor3f(1.0f, 1.0f, 1.0f);
-    glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(750, 850); // Center of the sun
-    for (int i = 0; i <= 360; i++) {
-        float angle = i * 3.14159 / 180; // Convert degrees to radians
-        float x = 750 + 80 * cos(angle); // Horizontal radius: 80
-        float y = 850 + 80 * sin(angle); // Vertical radius: 80
-        glVertex2f(x, y);
-    }
-    glEnd();
-}
-void cloud2() {
-   glColor3f(1.0f, 1.0f, 1.0f);
-    glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(726, 848); // Center of the sun
-    for (int i = 0; i <= 360; i++) {
-        float angle = i * 3.14159 / 180; // Convert degrees to radians
-        float x = 728 + 80 * cos(angle); // Horizontal radius: 80
-        float y = 785 + 80 * sin(angle); // Vertical radius: 80
-        glVertex2f(x, y);
-    }
-    glEnd();
-}
-// 2 full cloud
 
-void cloud3() {
-   glColor3f(1.0f, 1.0f, 1.0f);
+    // Circle 2 (Middle)
     glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(900, 1050); // Center of the sun
+    glVertex2f(centerX, centerY); // Center of the second circle
     for (int i = 0; i <= 360; i++) {
-        float angle = i * 3.14159 / 180; // Convert degrees to radians
-        float x = 900 + 80 * cos(angle); // Horizontal radius: 80
-        float y = 1050 + 80 * sin(angle); // Vertical radius: 80
+        float angle = i * 3.14159 / 180;
+        float x = centerX + 50 * cos(angle); // Radius: 50
+        float y = centerY + 50 * sin(angle);
         glVertex2f(x, y);
     }
     glEnd();
-}
-void cloud4() {
-    glColor3f(1.0f, 1.0f, 1.0f);
-    glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(950, 1050); // Center of the sun
-    for (int i = 0; i <= 360; i++) {
-        float angle = i * 3.14159 / 180; // Convert degrees to radians
-        float x = 950 + 80 * cos(angle); // Horizontal radius: 80
-        float y = 1050 + 80 * sin(angle); // Vertical radius: 80
-        glVertex2f(x, y);
-    }
-    glEnd();
-}
-void cloud5() {
-   glColor3f(1.0f, 1.0f, 1.0f);
-    glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(926, 1048); // Center of the sun
-    for (int i = 0; i <= 360; i++) {
-        float angle = i * 3.14159 / 180; // Convert degrees to radians
-        float x = 928 + 80 * cos(angle); // Horizontal radius: 80
-        float y = 1085 + 80 * sin(angle); // Vertical radius: 80
-        glVertex2f(x, y);
-    }
-    glEnd();}
 
-    // 3 full cloud
-
-void cloud6() {
-   glColor3f(1.0f, 1.0f, 1.0f);
+    // Circle 3 (Right)
     glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(350, 850); // Center of the sun
+    glVertex2f(centerX + 50, centerY); // Center of the third circle
     for (int i = 0; i <= 360; i++) {
-        float angle = i * 3.14159 / 180; // Convert degrees to radians
-        float x = 350 + 80 * cos(angle); // Horizontal radius: 80
-        float y = 850 + 80 * sin(angle); // Vertical radius: 80
+        float angle = i * 3.14159 / 180;
+        float x = (centerX + 50) + 40 * cos(angle); // Radius: 40
+        float y = centerY + 40 * sin(angle);
         glVertex2f(x, y);
     }
     glEnd();
 }
-void cloud7() {
-    glColor3f(1.0f, 1.0f, 1.0f);
-    glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(400, 850); // Center of the sun
-    for (int i = 0; i <= 360; i++) {
-        float angle = i * 3.14159 / 180; // Convert degrees to radians
-        float x = 400 + 80 * cos(angle); // Horizontal radius: 80
-        float y = 850 + 80 * sin(angle); // Vertical radius: 80
-        glVertex2f(x, y);
-    }
-    glEnd();
-}
-void cloud8() {
-   glColor3f(1.0f, 1.0f, 1.0f);
-    glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(372, 850); // Center of the sun
-    for (int i = 0; i <= 360; i++) {
-        float angle = i * 3.14159 / 180; // Convert degrees to radians
-        float x = 380 + 80 * cos(angle); // Horizontal radius: 80
-        float y = 790 + 80 * sin(angle); // Vertical radius: 80
-        glVertex2f(x, y);
-    }
-    glEnd();}
 
 void draw_object() {
     // Sky
@@ -283,16 +204,10 @@ void draw_object() {
     glVertex2f(0, 900);
     glEnd();
     sun();
-    cloud();
-    cloud1();
-    cloud2();
-    cloud3();
-    cloud4();
-    cloud5();
-    cloud6();
-    cloud7();
-    cloud8();
 
+    // Draw clouds at their current positions
+   drawCloud(700, 850); // Draw a cloud at (700, 850)
+drawCloud(900, 1050); // Draw another cloud at (900, 1050)
 
     // Sea
     glColor3f(0.0f, 0.5f, 0.8f);
@@ -316,22 +231,39 @@ void draw_object() {
     boat();
     hill();
     umbrella();
+}
 
+void updatePositions(int value) {
+    // Update boat position
+    boatPosX += 2.0f;
+    if (boatPosX > 1500) {
+        boatPosX = -400;
+    }
+
+    // Update cloud positions
+    cloud1PosX += 0.5f; // Move cloud 1 slowly
+    if (cloud1PosX > 1500) {
+        cloud1PosX = -200;
+    }
+
+    cloud2PosX += 0.4f; // Move cloud 2 slowly
+    if (cloud2PosX > 1500) {
+        cloud2PosX = -200;
+    }
+
+    cloud3PosX += 0.3f; // Move cloud 3 slowly
+    if (cloud3PosX > 1500) {
+        cloud3PosX = -200;
+    }
+
+    glutPostRedisplay(); // Request redisplay
+    glutTimerFunc(30, updatePositions, 0); // Call this function again after 30ms
 }
 
 void display(void) {
     glClear(GL_COLOR_BUFFER_BIT);
     draw_object();
     glFlush();
-}
-
-void updateBoatPosition(int value) {
-    boatPosX += 2.0f; // Increment the boat's position
-    if (boatPosX > 1500) { // Reset position if it moves out of the screen
-        boatPosX = -400;
-    }
-    glutPostRedisplay(); // Request redisplay
-    glutTimerFunc(30, updateBoatPosition, 0); // Call this function again after 30ms
 }
 
 void init(void) {
@@ -349,7 +281,7 @@ int main(int argc, char** argv) {
     glutCreateWindow("Sea Beach");
 
     glutDisplayFunc(display);
-    glutTimerFunc(30, updateBoatPosition, 0); // Start the timer for animation
+    glutTimerFunc(30, updatePositions, 0); // Start the timer for animation
     init();
     glutMainLoop();
     return 0;
