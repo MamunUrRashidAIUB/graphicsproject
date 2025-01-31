@@ -6,6 +6,7 @@ float boatPosX = 0; // Horizontal position of the boats
 float cloud1PosX = 700; // Horizontal position of cloud 1
 float cloud2PosX = 900; // Horizontal position of cloud 2
 float cloud3PosX = 350; // Horizontal position of cloud 3
+float balloonPosX = 200;
 
 void boat() {
     glPushMatrix();
@@ -194,6 +195,57 @@ void drawCloud(float centerX, float centerY) {
     glEnd();
 }
 
+//balloon
+void hotAirBalloon() {
+    glPushMatrix();
+    glTranslatef(balloonPosX, 0, 0); // Translate the balloon horizontally
+
+    // Balloon Envelope (Main Body)
+    glColor3f(1.0f, 0.0f, 0.0f); // Red base color
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2f(1000, 800); // Center-top of balloon
+    for (int i = 0; i <= 180; i++) { // Draw a teardrop shape
+        float angle = i * 3.14159 / 180;
+        float x = 1000 + 120 * cos(angle); // Horizontal radius
+        float y = 800 + 180 * sin(angle);  // Vertical radius
+        glVertex2f(x, y);
+    }
+    glEnd();
+
+    // Vertical Segments (U2, I3, W2 patterns)
+    glColor3f(1.0f, 1.0f, 0.0f); // Yellow segments
+    for (int i = 0; i < 5; i++) { // Draw 5 vertical lines
+        glBegin(GL_LINES);
+        float x_offset = 1000 + 120 * cos((i * 36) * 3.14159 / 180);
+        float y_offset = 800 + 180 * sin((i * 36) * 3.14159 / 180);
+        glVertex2f(1000, 800);
+        glVertex2f(x_offset, y_offset);
+        glEnd();
+    }
+
+    // Basket (A3/B3 structure)
+    glColor3f(0.5f, 0.35f, 0.05f); // Brown basket
+    glBegin(GL_QUADS);
+    glVertex2f(950, 600);
+    glVertex2f(1050, 600);
+    glVertex2f(1050, 650);
+    glVertex2f(950, 650);
+    glEnd();
+
+    // Ropes (V2/h/k3 patterns)
+    glColor3f(0.0f, 0.0f, 0.0f); // Black ropes
+    glBegin(GL_LINES);
+    glVertex2f(970, 650); // Left rope
+    glVertex2f(990, 750);
+    glVertex2f(1030, 650); // Right rope
+    glVertex2f(1010, 750);
+    glEnd();
+
+    glPopMatrix();
+}
+
+
+
 void draw_object() {
     // Sky
     glColor3f(0.6196f, 0.9333f, 0.9960f);
@@ -231,6 +283,7 @@ void draw_object() {
     boat();
     hill();
     umbrella();
+    hotAirBalloon();
 }
 
 void updatePositions(int value) {
