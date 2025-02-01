@@ -199,48 +199,38 @@ void hotAirBalloon() {
     glPushMatrix();
     glTranslatef(balloonPosX, 0, 0); // Translate the balloon horizontally
 
-    // Balloon Envelope (Main Body)
-    glColor3f(1.0f, 0.0f, 0.0f); // Red color for the balloon top
+    // Balloon Envelope (Red semicircle)
+    glColor3f(1.0f, 0.0f, 0.0f);
     glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(800, 1000); // Center of the semicircle (O2)
+    glVertex2f(250, 1000); // Center of the semicircle
     for (int i = 0; i <= 180; i++) {
-        float angle = i * 3.14159 / 180; // Convert degrees to radians
-        float x = 800 + 70 * cos(angle); // Horizontal radius: 70, adjust the center
-        float y = 1000 + 70 * sin(angle); // Vertical radius: 70, adjust the center
+        float angle = i * 3.14159 / 180;
+        float x = 250 + 70 * cos(angle); // Horizontal radius: 70
+        float y = 1000 + 70 * sin(angle); // Vertical radius: 70
         glVertex2f(x, y);
     }
     glEnd();
 
-    // Basket (A3/B3 structure)
-    glColor3f(0.5f, 0.35f, 0.05f); // Brown basket
+    // Basket (Brown rectangle)
+    glColor3f(0.5f, 0.35f, 0.05f);
     glBegin(GL_QUADS);
-    glVertex2f(950, 600); // A3
-    glVertex2f(1050, 600); // B3
-    glVertex2f(1050, 650); // n_3
-    glVertex2f(950, 650); // l_3
+    glVertex2f(200, 850); // Top-left corner (A3)
+    glVertex2f(300, 850); // Top-right corner (B3)
+    glVertex2f(300, 800); // Bottom-right corner
+    glVertex2f(200, 800); // Bottom-left corner
     glEnd();
 
-    // Ropes (V2/h/k3 patterns)
-    glColor3f(0.0f, 0.0f, 0.0f); // Black ropes
+    // Ropes (Two lines connecting balloon to basket)
+    glColor3f(0.0f, 0.0f, 0.0f); // Black color
     glBegin(GL_LINES);
 
-    // V_2 pattern
-    glVertex2f(800 - 50, 1000 - 70); // Starting point on the balloon
-    glVertex2f(950, 650); // Ending point on the basket (A3)
+    // Left rope: Connects bottom-left of balloon to top-left of basket
+    glVertex2f(180,1000); // Start at balloon (x=200, y=930)
+    glVertex2f(200, 850);             // End at basket's top-left (A3)
 
-    glVertex2f(800 + 50, 1000 - 70); // Starting point on the balloon
-    glVertex2f(1050, 650); // Ending point on the basket (B3)
-
-    // h_3 pattern
-    glVertex2f(800 - 20, 1000 - 70); // Starting point on the balloon
-    glVertex2f(970, 650); // Ending point on the basket
-
-    glVertex2f(800 + 20, 1000 - 70); // Starting point on the balloon
-    glVertex2f(1030, 650); // Ending point on the basket
-
-    // k_3 pattern
-    glVertex2f(800, 1000 - 70); // Starting point on the balloon
-    glVertex2f(1000, 650); // Ending point on the basket
+    // Right rope: Connects bottom-right of balloon to top-right of basket
+    glVertex2f(320,1000); // Start at balloon (x=300, y=930)
+    glVertex2f(300, 850);            // End at basket's top-right (B3)
 
     glEnd();
 
@@ -314,11 +304,11 @@ void updatePositions(int value) {
         cloud3PosX = -200;
     }
 
-    // Update balloon position
-    balloonPosX += 1.0f; // Move balloon horizontally
+    //Update balloon position
+balloonPosX += 1.0f; // Move balloon horizontally
     if (balloonPosX > 1500) {
-        balloonPosX = -200; // Reset position when it goes off-screen
-    }
+    balloonPosX = -200; // Reset position when it goes off-screen
+   }
 
     glutPostRedisplay(); // Request redisplay
     glutTimerFunc(30, updatePositions, 0); // Call this function again after 30ms
