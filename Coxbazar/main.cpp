@@ -7,6 +7,7 @@ float cloud1PosX = 700; // Horizontal position of cloud 1
 float cloud2PosX = 900; // Horizontal position of cloud 2
 float cloud3PosX = 350; // Horizontal position of cloud 3
 float balloonPosX = 200;
+float day =true;
 
 void boat() {
     glPushMatrix();
@@ -190,7 +191,12 @@ void umbrella() {
 }
 
 void sun() {
-    // Sun drawing (unchanged)
+    if (day){
+        glColor3f(1.0f,1.0f,0.0f);
+    }
+    else{
+       glColor3f(1.0f,1.0f,1.0f);
+    }
     glColor3f(1.0f, 1.0f, 0.0f); // Yellow color for the sun
     glBegin(GL_TRIANGLE_FAN);
     glVertex2f(1100, 1000); // Center of the sun
@@ -286,21 +292,29 @@ void hotAirBalloon() {
 
 
 void draw_object() {
-    // Sky
-    glColor3f(0.6196f, 0.9333f, 0.9960f);
+    // Adjust the full background color based on the time of day
+    if (day) {
+        glColor3f(0.6196f, 0.9333f, 0.9960f); // Light blue for day
+    } else {
+        glColor3f(0.0f, 0.0f, 0.2f); // Dark blue/black for night
+    }
+
+    // Cover the entire screen (sky)
     glBegin(GL_QUADS);
-    glVertex2f(0, 1200);
-    glVertex2f(1500, 1200);
-    glVertex2f(1500, 900);
-    glVertex2f(0, 900);
+    glVertex2f(0, 1200);   // Top-left
+    glVertex2f(1500, 1200); // Top-right
+    glVertex2f(1500, 0);    // Bottom-right (fixed)
+    glVertex2f(0, 0);       // Bottom-left (fixed)
     glEnd();
-    sun();
+
+    sun(); // Draw the sun (or moon)
 
     // Draw clouds at their current positions
-  drawCloud(cloud1PosX, 850);   // Cloud 1
+    drawCloud(cloud1PosX, 850);   // Cloud 1
     drawCloud(cloud2PosX, 1050);  // Cloud 2
-    drawCloud(cloud3PosX, 950);   // Cloud 3 (previously missing)
-    // Sea
+    drawCloud(cloud3PosX, 950);   // Cloud 3
+
+    // Draw sea
     glColor3f(0.0f, 0.5f, 0.8f);
     glBegin(GL_QUADS);
     glVertex2f(0, 600);
@@ -309,7 +323,7 @@ void draw_object() {
     glVertex2f(0, 300);
     glEnd();
 
-    // Sand
+    // Draw sand
     glColor3f(0.9f, 0.8f, 0.6f);
     glBegin(GL_QUADS);
     glVertex2f(0, 300);
@@ -324,6 +338,7 @@ void draw_object() {
     umbrella();
     hotAirBalloon();
 }
+
 
 void updatePositions(int value) {
     // Update boat position
@@ -357,6 +372,15 @@ balloonPosX += 1.0f; // Move balloon horizontally
     glutPostRedisplay(); // Request redisplay
     glutTimerFunc(30, updatePositions, 0); // Call this function again after 30ms
 }
+void keyboard(unsigned char key, int x, int y) {
+    if (key == 'd' || key == 'D') {
+        day = true;  // Switch to day mode
+    } else if (key == 'n' || key == 'N') {
+        day = false; // Switch to night mode
+    }
+    glutPostRedisplay(); // Redraw the scene with the new mode
+}
+
 
 void display(void) {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -377,6 +401,7 @@ int main(int argc, char** argv) {
     glutInitWindowSize(1000, 600);
     glutInitWindowPosition(0, 0);
     glutCreateWindow("Sea Beach");
+glutKeyboardFunc(keyboard);
 
     glutDisplayFunc(display);
     glutTimerFunc(30, updatePositions, 0); // Start the timer for animation
