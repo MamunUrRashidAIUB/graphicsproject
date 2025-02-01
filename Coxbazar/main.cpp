@@ -25,10 +25,10 @@ void boat() {
 
     glColor3f(1, 0, 0);
     glBegin(GL_POLYGON);
-    glVertex3i(240, 500, 0);
-    glVertex3i(360, 500, 0);
-    glVertex3i(360, 540, 0);
-    glVertex3i(240, 540, 0);
+    glVertex3i(340, 540, 0);
+    glVertex3i(300, 500, 0);
+    glVertex3i(400, 500, 0);
+
     glEnd();
 
     /// Boat 2
@@ -42,14 +42,15 @@ void boat() {
 
     glColor3f(1, 0, 0);
     glBegin(GL_POLYGON);
-    glVertex3i(850, 500, 0);
-    glVertex3i(950, 500, 0);
-    glVertex3i(950, 550, 0);
-    glVertex3i(850, 550, 0);
+    glVertex3i(940, 540, 0);
+    glVertex3i(880, 500, 0);
+    glVertex3i(1000, 500, 0);
+
     glEnd();
 
     glPopMatrix(); // Restore the original matrix
 }
+
 
 void hill() {
     if (day) {
@@ -94,7 +95,32 @@ void hill() {
     glEnd();
 }
 
+
+
+void drawLighthouse(float x, float y) {
+    // Base
+    glColor3f(0.5f, 0.5f, 0.5f); // Gray color for base
+    glBegin(GL_QUADS);
+    glVertex2f(x, y);
+    glVertex2f(x + 50, y);
+    glVertex2f(x + 50, y + 200);
+    glVertex2f(x, y + 200);
+    glEnd();
+
+    // Top
+    glColor3f(1.0f, 0.0f, 0.0f); // Red color for top
+    glBegin(GL_TRIANGLES);
+    glVertex2f(x - 10, y + 200);
+    glVertex2f(x + 60, y + 200);
+    glVertex2f(x + 25, y + 250);
+    glEnd();
+}
+
+void drawLighthouse() {
+    drawLighthouse(1300, 150);
+}
 void umbrella() {
+
     // Umbrella drawing (unchanged)
     glColor3f(0.5f, 0.35f, 0.05f); // Brown color for the pole
     glBegin(GL_LINES);
@@ -103,14 +129,10 @@ void umbrella() {
     glEnd();
 
     glColor3f(1.0f, 0.0f, 0.0f); // Red color for the umbrella top
-    glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(200, 200); // Center of the semicircle (O1)
-    for (int i = 0; i <= 180; i++) {
-        float angle = i * 3.14159 / 180; // Convert degrees to radians
-        float x = 200 + 70 * cos(angle); // Horizontal radius: 70, adjust the center
-        float y = 200 + 70 * sin(angle); // Vertical radius: 70, adjust the center
-        glVertex2f(x, y);
-    }
+     glBegin(GL_TRIANGLES);
+    glVertex2f(200, 300);
+    glVertex2f(100, 200);
+    glVertex2f(300, 200);
     glEnd();
 //chair
     glPushMatrix();
@@ -137,13 +159,10 @@ void umbrella() {
 
     glColor3f(1.0f, 0.0f, 0.0f); // Red color for the umbrella top
     glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(500, 200); // Center of the semicircle (O2)
-    for (int i = 0; i <= 180; i++) {
-        float angle = i * 3.14159 / 180; // Convert degrees to radians
-        float x = 500 + 70 * cos(angle); // Horizontal radius: 70, adjust the center
-        float y = 200 + 70 * sin(angle); // Vertical radius: 70, adjust the center
-        glVertex2f(x, y);
-    }
+      glBegin(GL_TRIANGLES);
+    glVertex2f(500, 300);
+    glVertex2f(400, 200);
+    glVertex2f(600, 200);
     glEnd();
 //chair
     glPushMatrix();
@@ -169,14 +188,10 @@ void umbrella() {
     glEnd();
 
     glColor3f(1.0f, 0.0f, 0.0f); // Red color for the umbrella top
-    glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(900, 200); // Center of the semicircle (O3)
-    for (int i = 0; i <= 180; i++) {
-        float angle = i * 3.14159 / 180; // Convert degrees to radians
-        float x = 900 + 70 * cos(angle); // Horizontal radius: 70, adjust the center
-        float y = 200 + 70 * sin(angle); // Vertical radius: 70, adjust the center
-        glVertex2f(x, y);
-    }
+      glBegin(GL_TRIANGLES);
+    glVertex2f(900, 300);
+    glVertex2f(800, 200);
+    glVertex2f(1000, 200);
     glEnd();
       glPushMatrix();
     glColor3ub(255,255,255);
@@ -359,6 +374,8 @@ void draw_object() {
     hill();
     umbrella();
     hotAirBalloon();
+     drawLighthouse(); // Draw the lighthouse
+
 }
 
 
