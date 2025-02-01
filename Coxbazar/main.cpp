@@ -15,7 +15,7 @@ void boat() {
     glTranslatef(boatPosX, 0, 0); // Translate the boat horizontally based on boatPosX
 
     /// Boat 1
-    glColor3f(0, 0, 0);
+ glColor3f(0.83f, 0.69f, 0.22f);
     glBegin(GL_POLYGON);
     glVertex3i(200, 500, 0);
     glVertex3i(400, 500, 0);
@@ -23,7 +23,7 @@ void boat() {
     glVertex3i(250, 450, 0);
     glEnd();
 
-    glColor3f(1, 0, 0);
+    glColor3f(0.9f, 0.9f, 0.9f);
     glBegin(GL_POLYGON);
     glVertex3i(340, 540, 0);
     glVertex3i(300, 500, 0);
@@ -32,7 +32,7 @@ void boat() {
     glEnd();
 
     /// Boat 2
-    glColor3f(0, 0, 0);
+   glColor3f(0.9f, 0.8f, 0.6f);
     glBegin(GL_POLYGON);
     glVertex3i(800, 500, 0);
     glVertex3i(1000, 500, 0);
@@ -40,7 +40,7 @@ void boat() {
     glVertex3i(850, 450, 0);
     glEnd();
 
-    glColor3f(1, 0, 0);
+  glColor3f(0.4f, 0.4f, 0.4f);
     glBegin(GL_POLYGON);
     glVertex3i(940, 540, 0);
     glVertex3i(880, 500, 0);
@@ -95,30 +95,6 @@ void hill() {
     glEnd();
 }
 
-
-
-void drawLighthouse(float x, float y) {
-    // Base
-    glColor3f(0.5f, 0.5f, 0.5f); // Gray color for base
-    glBegin(GL_QUADS);
-    glVertex2f(x, y);
-    glVertex2f(x + 50, y);
-    glVertex2f(x + 50, y + 200);
-    glVertex2f(x, y + 200);
-    glEnd();
-
-    // Top
-    glColor3f(1.0f, 0.0f, 0.0f); // Red color for top
-    glBegin(GL_TRIANGLES);
-    glVertex2f(x - 10, y + 200);
-    glVertex2f(x + 60, y + 200);
-    glVertex2f(x + 25, y + 250);
-    glEnd();
-}
-
-void drawLighthouse() {
-    drawLighthouse(1300, 150);
-}
 void umbrella() {
 
     // Umbrella drawing (unchanged)
@@ -374,7 +350,7 @@ void draw_object() {
     hill();
     umbrella();
     hotAirBalloon();
-     drawLighthouse(); // Draw the lighthouse
+
 
 }
 
