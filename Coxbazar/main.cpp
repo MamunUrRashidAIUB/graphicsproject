@@ -51,8 +51,11 @@ void boat() {
 }
 
 void hill() {
-    // Hill drawing (unchanged)
-    glColor3f(0.0f, 1.0f, 0.0f);
+    if (day) {
+        glColor3f(0.0f, 1.0f, 0.0f); // Day: Green hills
+    } else {
+        glColor3f(0.1f, 0.3f, 0.1f); // Night: Dark green hills
+    }
     glBegin(GL_TRIANGLES);
     glVertex2f(150, 600);
     glVertex2f(300, 700);
@@ -195,9 +198,9 @@ void sun() {
         glColor3f(1.0f,1.0f,0.0f);
     }
     else{
-       glColor3f(1.0f,1.0f,1.0f);
+       glColor3f(1.0f, 1.0f, 1.0f);
     }
-    glColor3f(1.0f, 1.0f, 0.0f); // Yellow color for the sun
+ // Yellow color for the sun
     glBegin(GL_TRIANGLE_FAN);
     glVertex2f(1100, 1000); // Center of the sun
     for (int i = 0; i <= 360; i++) {
@@ -211,7 +214,11 @@ void sun() {
 
 void drawCloud(float centerX, float centerY) {
     // Circle 1 (Left)
-    glColor3f(1.0f, 1.0f, 1.0f); // White color
+       if (day) {
+        glColor3f(1.0f, 1.0f, 1.0f); // Day: White clouds
+    } else {
+        glColor3f(0.5f, 0.5f, 0.5f); // Night: Gray clouds
+    }
     glBegin(GL_TRIANGLE_FAN);
     glVertex2f(centerX - 50, centerY); // Center of the first circle
     for (int i = 0; i <= 360; i++) {
@@ -296,7 +303,7 @@ void draw_object() {
     if (day) {
         glColor3f(0.6196f, 0.9333f, 0.9960f); // Light blue for day
     } else {
-        glColor3f(0.0f, 0.0f, 0.2f); // Dark blue/black for night
+       glColor3f(0.0f, 0.0f, 0.0f);
     }
 
     // Cover the entire screen (sky)
@@ -313,9 +320,14 @@ void draw_object() {
     drawCloud(cloud1PosX, 850);   // Cloud 1
     drawCloud(cloud2PosX, 1050);  // Cloud 2
     drawCloud(cloud3PosX, 950);   // Cloud 3
-
+// **Sea Color**
+    if (day) {
+        glColor3f(0.0f, 0.5f, 0.8f); // Day sea (blue)
+    } else {
+        glColor3f(0.0f, 0.0f, 0.4f); // Night sea (dark blue)
+    }
     // Draw sea
-    glColor3f(0.0f, 0.5f, 0.8f);
+
     glBegin(GL_QUADS);
     glVertex2f(0, 600);
     glVertex2f(1500, 600);
@@ -323,8 +335,12 @@ void draw_object() {
     glVertex2f(0, 300);
     glEnd();
 
-    // Draw sand
-    glColor3f(0.9f, 0.8f, 0.6f);
+    // **Sand Color**
+    if (day) {
+        glColor3f(0.9f, 0.8f, 0.6f); // Day sand (light brown)
+    } else {
+        glColor3f(0.3f, 0.2f, 0.1f); // Night sand (dark brown)
+    }
     glBegin(GL_QUADS);
     glVertex2f(0, 300);
     glVertex2f(1500, 300);
