@@ -8,6 +8,7 @@ float cloud2PosX = 900; // Horizontal position of cloud 2
 float cloud3PosX = 350; // Horizontal position of cloud 3
 float balloonPosX = 200;
 float day =true;
+float boatSpeed = 2.0f; // Boat speed variable
 
 void boat() {
     glPushMatrix();
@@ -278,7 +279,12 @@ void hotAirBalloon() {
     glEnd();
 
     // Ropes (Two lines connecting balloon to basket)
-    glColor3f(0.0f, 0.0f, 0.0f); // Black color
+    if (day){
+        glColor3f(1.0f,1.0f,0.0f);
+    }
+    else{
+       glColor3f(1.0f, 1.0f, 1.0f);
+    }
     glBegin(GL_LINES);
 
     // Left rope: Connects bottom-left of balloon to top-left of basket
@@ -393,6 +399,16 @@ void keyboard(unsigned char key, int x, int y) {
         day = true;  // Switch to day mode
     } else if (key == 'n' || key == 'N') {
         day = false; // Switch to night mode
+    } else if (key == 'a' || key == 'A') {
+        boatSpeed -= 0.5f; // Decrease boat speed
+        if (boatSpeed < 0.5f) {
+            boatSpeed = 0.5f; // Minimum speed
+        }
+    } else if (key == 's' || key == 'S') {
+        boatSpeed += 0.5f; // Increase boat speed
+        if (boatSpeed > 5.0f) {
+            boatSpeed = 5.0f; // Maximum speed
+        }
     }
     glutPostRedisplay(); // Redraw the scene with the new mode
 }
