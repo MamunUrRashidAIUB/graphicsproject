@@ -363,8 +363,8 @@ void draw_object() {
 
 
 void updatePositions(int value) {
-    // Update boat position
-    boatPosX += 2.0f;
+    // Update boat position using the boatSpeed variable
+    boatPosX += boatSpeed; // Use boatSpeed instead of a fixed value
     if (boatPosX > 1500) {
         boatPosX = -400;
     }
@@ -385,11 +385,11 @@ void updatePositions(int value) {
         cloud3PosX = -200;
     }
 
-    //Update balloon position
-balloonPosX += 1.0f; // Move balloon horizontally
+    // Update balloon position
+    balloonPosX += 1.0f; // Move balloon horizontally
     if (balloonPosX > 1500) {
-    balloonPosX = -200; // Reset position when it goes off-screen
-   }
+        balloonPosX = -200; // Reset position when it goes off-screen
+    }
 
     glutPostRedisplay(); // Request redisplay
     glutTimerFunc(30, updatePositions, 0); // Call this function again after 30ms
