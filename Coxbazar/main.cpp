@@ -107,7 +107,22 @@ void umbrella() {
         glVertex2f(x, y);
     }
     glEnd();
-
+//chair
+    glPushMatrix();
+    glColor3ub(255,255,255);
+    glBegin(GL_QUADS);
+    glVertex2f(210,60);
+    glVertex2f(230,30);
+    glVertex2f(280, 30);
+    glVertex2f(260, 60);
+    glEnd();
+    glBegin(GL_QUADS);
+    glVertex2f(360,30);
+    glVertex2f(270,30);
+    glVertex2f(270,40);
+    glVertex2f(360,40);
+    glEnd();
+    glPopMatrix();
     // Second Umbrella
     glColor3f(0.5f, 0.35f, 0.05f); // Brown color for the pole
     glBegin(GL_LINES);
