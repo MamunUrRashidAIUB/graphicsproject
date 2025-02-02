@@ -50,7 +50,30 @@ void boat() {
 
     glPopMatrix(); // Restore the original matrix
 }
+//star
+void star()
+{
+    //star1
+    glColor3f(1, 1, 1);
+    glBegin(GL_POLYGON);
 
+    glVertex3i(30, 1020, 0);
+    glVertex3i(50, 1050, 0);
+    glVertex3i(50, 1100, 0);
+
+glEnd();
+glColor3f(1, 1, 1);
+    glBegin(GL_POLYGON);
+    glVertex3i(70, 1020, 0);
+    glVertex3i(50, 1100, 0);
+    glVertex3i(50, 1050, 0);
+glEnd();
+glColor3f(1, 1, 1);
+    glBegin(GL_POLYGON);
+    glVertex3i(50, 1050, 0);
+    glVertex3i(80, 1070, 0);
+    glVertex3i(20, 1070, 0);
+glEnd();}
 
 void hill() {
     if (day) {
@@ -350,6 +373,8 @@ void draw_object() {
     hill();
     umbrella();
     hotAirBalloon();
+    star();
+
 
 
 }
