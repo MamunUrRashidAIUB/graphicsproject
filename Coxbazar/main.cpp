@@ -9,7 +9,7 @@ float cloud3PosX = 350; // Horizontal position of cloud 3
 float balloonPosX = 200;
 float day =true;
 float boatSpeed = 2.0f;
-bool raining = true; // Set to false to stop rain
+bool raining = false; // Set to false to stop rain
 // Boat speed variable
 
 void boat() {
@@ -53,29 +53,53 @@ void boat() {
     glPopMatrix(); // Restore the original matrix
 }
 //star
-void star()
-{
-    //star1
-    glColor3f(1, 1, 1);
-    glBegin(GL_POLYGON);
+void star() {
+    if (!day) { // Only draw stars if it's night
+        //star1
+        glColor3f(1, 1, 1);
+        glBegin(GL_POLYGON);
+        glVertex3i(600, 1120, 0);
+        glVertex3i(580, 1080, 0);
+        glVertex3i(600, 1100, 0);
+        glEnd();
 
-    glVertex3i(30, 1020, 0);
-    glVertex3i(50, 1050, 0);
-    glVertex3i(50, 1100, 0);
+        glColor3f(1, 1, 1);
+        glBegin(GL_POLYGON);
+        glVertex3i(600, 1120, 0);
+        glVertex3i(620, 1080, 0);
+        glVertex3i(600, 1100, 0);
+        glEnd();
 
-glEnd();
-glColor3f(1, 1, 1);
-    glBegin(GL_POLYGON);
-    glVertex3i(70, 1020, 0);
-    glVertex3i(50, 1100, 0);
-    glVertex3i(50, 1050, 0);
-glEnd();
-glColor3f(1, 1, 1);
-    glBegin(GL_POLYGON);
-    glVertex3i(50, 1050, 0);
-    glVertex3i(80, 1070, 0);
-    glVertex3i(20, 1070, 0);
-glEnd();}
+        glColor3f(1, 1, 1);
+        glBegin(GL_POLYGON);
+        glVertex3i(580, 1100, 0);
+        glVertex3i(620, 1100, 0);
+        glVertex3i(600, 1080, 0);
+        glEnd();
+
+        // star 2
+        glColor3f(1, 1, 1);
+        glBegin(GL_POLYGON);
+        glVertex3i(660, 1120, 0);
+        glVertex3i(640, 1080, 0);
+        glVertex3i(660, 1100, 0);
+        glEnd();
+
+        glColor3f(1, 1, 1);
+        glBegin(GL_POLYGON);
+        glVertex3i(660, 1120, 0);
+        glVertex3i(680, 1080, 0);
+        glVertex3i(660, 1100, 0);
+        glEnd();
+
+        glColor3f(1, 1, 1);
+        glBegin(GL_POLYGON);
+        glVertex3i(640, 1100, 0);
+        glVertex3i(680, 1100, 0);
+        glVertex3i(660, 1080, 0);
+        glEnd();
+    }
+}
 
 void hill() {
     if (day) {
@@ -139,18 +163,19 @@ void umbrella() {
     glPushMatrix();
     glColor3ub(255,255,255);
     glBegin(GL_QUADS);
-    glVertex2f(210,60);
-    glVertex2f(230,30);
-    glVertex2f(280, 30);
-    glVertex2f(260, 60);
+    glVertex2f(240,100);
+    glVertex2f(260,60);
+    glVertex2f(300, 80);
+    glVertex2f(280, 100);
     glEnd();
+     glColor3ub(255,255,255);
     glBegin(GL_QUADS);
-    glVertex2f(360,30);
-    glVertex2f(270,30);
-    glVertex2f(270,40);
-    glVertex2f(360,40);
+    glVertex2f(260,60);
+    glVertex2f(380,60);
+    glVertex2f(380, 80);
+    glVertex2f(300, 80);
     glEnd();
-    glPopMatrix();
+
     // Second Umbrella
     glColor3f(0.5f, 0.35f, 0.05f); // Brown color for the pole
     glBegin(GL_LINES);
@@ -169,45 +194,19 @@ void umbrella() {
     glPushMatrix();
     glColor3ub(255,255,255);
     glBegin(GL_QUADS);
-    glVertex2f(510,60);
-    glVertex2f(530,30);
-    glVertex2f(580, 30);
-    glVertex2f(560, 60);
+    glVertex2f(560, 100);
+    glVertex2f(580, 60);
+    glVertex2f(640, 80);
+    glVertex2f(620, 100);
     glEnd();
+     glColor3ub(255,255,255);
     glBegin(GL_QUADS);
-    glVertex2f(660,30);
-    glVertex2f(570,30);
-    glVertex2f(560,40);
-    glVertex2f(660,40);
-    glEnd();
-    glPopMatrix();
-    // Third Umbrella
-    glColor3f(0.5f, 0.35f, 0.05f); // Brown color for the pole
-    glBegin(GL_LINES);
-    glVertex2f(900, 100); // Bottom of the pole (P3)
-    glVertex2f(900, 200); // Top of the pole (O3)
+    glVertex2f(580, 60);
+    glVertex2f(640, 80);
+    glVertex2f(760, 80);
+    glVertex2f(740, 60);
     glEnd();
 
-    glColor3f(1.0f, 0.0f, 0.0f); // Red color for the umbrella top
-      glBegin(GL_TRIANGLES);
-    glVertex2f(900, 300);
-    glVertex2f(800, 200);
-    glVertex2f(1000, 200);
-    glEnd();
-      glPushMatrix();
-    glColor3ub(255,255,255);
-    glBegin(GL_QUADS);
-    glVertex2f(910,60);
-    glVertex2f(930,30);
-    glVertex2f(980, 30);
-    glVertex2f(960, 60);
-    glEnd();
-    glBegin(GL_QUADS);
-    glVertex2f(1060,30);
-    glVertex2f(970,30);
-    glVertex2f(960,40);
-    glVertex2f(1060,40);
-    glEnd();
 }
 
 void sun() {
