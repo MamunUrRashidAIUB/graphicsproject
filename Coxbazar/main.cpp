@@ -8,7 +8,9 @@ float cloud2PosX = 900; // Horizontal position of cloud 2
 float cloud3PosX = 350; // Horizontal position of cloud 3
 float balloonPosX = 200;
 float day =true;
-float boatSpeed = 2.0f; // Boat speed variable
+float boatSpeed = 2.0f;
+bool raining = true; // Set to false to stop rain
+// Boat speed variable
 
 void boat() {
     glPushMatrix();
@@ -314,6 +316,37 @@ void hotAirBalloon() {
     glPopMatrix();
 }
 
+void drawRain() {
+    if (!raining) return; // Only draw rain if it's raining
+
+    float rainAngle = 30.0f; // Angle of the rain (30 degrees)
+    float angleRadians = rainAngle * 3.14159f / 180.0f; // Convert to radians
+    float speedFactor = 2.0f; // Speed of the rain
+
+    // Calculate horizontal and vertical offsets based on the angle
+    float xOffset = speedFactor * cos(angleRadians);
+    float yOffset = speedFactor * sin(angleRadians);
+
+    glColor3f(0.5f, 0.5f, 1.0f); // Light blue color for raindrops
+
+    // Increase line width to make raindrops bolder
+    glLineWidth(3.0f); // Set line width to 3.0 (default is 1.0)
+
+    for (int i = 0; i < 1000; i++) {
+        // Generate random positions for raindrops
+        float x = (rand() % 1500); // Random x position (0 to 1500)
+        float y = (rand() % 1200); // Random y position (0 to 1200)
+
+        // Draw a raindrop as a line
+        glBegin(GL_LINES);
+        glVertex2f(x, y); // Start of the raindrop
+        glVertex2f(x + xOffset, y - yOffset); // End of the raindrop
+        glEnd();
+    }
+
+    // Reset line width to default (optional)
+    glLineWidth(1.0f);
+}
 
 
 
@@ -374,6 +407,7 @@ void draw_object() {
     umbrella();
     hotAirBalloon();
     star();
+    drawRain();
 
 
 
@@ -427,10 +461,11 @@ void keyboard(unsigned char key, int x, int y) {
         if (boatSpeed > 5.0f) {
             boatSpeed = 5.0f; // Maximum speed
         }
+    } else if (key == 'r' || key == 'R') {
+        raining = !raining; // Toggle rain on/off
     }
     glutPostRedisplay(); // Redraw the scene with the new mode
 }
-
 
 void display(void) {
     glClear(GL_COLOR_BUFFER_BIT);
