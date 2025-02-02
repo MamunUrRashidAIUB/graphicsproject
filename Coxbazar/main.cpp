@@ -2,84 +2,72 @@
 #include <stdio.h>
 #include <math.h>
 
-float boatPosX = 0; // Horizontal position of the boats
-float cloud1PosX = 700; // Horizontal position of cloud 1
-float cloud2PosX = 900; // Horizontal position of cloud 2
-float cloud3PosX = 350; // Horizontal position of cloud 3
+float boatPosX = 0;
+float cloud1PosX = 700;
+float cloud2PosX = 900;
+float cloud3PosX = 350;
 float balloonPosX = 200;
-float day =true;
+float day = true;
 float boatSpeed = 2.0f;
 bool raining = false;
-float planePosX = 1500; // Initial position of the plane (off-screen to the right)
+float planePosX = 1500;
 
-
- // Set to false to stop rain
-// Boat speed variable
-
+//boat
 void boat() {
     glPushMatrix();
-    glTranslatef(boatPosX, 0, 0); // Translate the boat horizontally based on boatPosX
+    glTranslatef(boatPosX, 0, 0);
 
-    /// Boat 1
+    // Boat 1
     glColor3ub(211, 176, 56);
     glBegin(GL_POLYGON);
     glVertex2f(200, 500);
-   glVertex2f(400, 500);
-   glVertex2f(350, 450);
-   glVertex2f(250, 450);
+    glVertex2f(400, 500);
+    glVertex2f(350, 450);
+    glVertex2f(250, 450);
     glEnd();
 
-glColor3ub(229, 229, 229);
-
+    glColor3ub(229, 229, 229);
     glBegin(GL_POLYGON);
     glVertex2f(260, 500);
     glVertex2f(340, 540);
     glVertex2f(400, 500);
-
     glEnd();
 
-    /// Boat 2
- glColor3ub(229, 204, 153);
-
+    // Boat 2
+    glColor3ub(229, 204, 153);
     glBegin(GL_POLYGON);
-   glVertex2f(800, 500);
-   glVertex2f(1000, 500);
-   glVertex2f(950, 450);
+    glVertex2f(800, 500);
+    glVertex2f(1000, 500);
+    glVertex2f(950, 450);
     glVertex2f(850, 450);
     glEnd();
 
-  glColor3ub(102, 102, 102);
-
+    glColor3ub(102, 102, 102);
     glBegin(GL_POLYGON);
     glVertex2f(940, 540);
-   glVertex2f(860, 500);
-   glVertex2f(1000, 500);
-
+    glVertex2f(860, 500);
+    glVertex2f(1000, 500);
     glEnd();
 
     glPopMatrix(); // Restore the original matrix
 }
-//star
-void star() {
-    if (!day) { // Only draw stars if it's night
-        //star1
-        glColor3ub(255, 255, 255);
 
+// stars only visible at night
+void star() {
+    if (!day) {
+        // Star 1
+        glColor3ub(255, 255, 255);
         glBegin(GL_POLYGON);
         glVertex2f(600, 1120);
         glVertex2f(580, 1080);
-       glVertex2f(600, 1100);
-        glEnd();
-
-       glColor3ub(255, 255, 255);
-
-        glBegin(GL_POLYGON);
-        glVertex2f(600, 1120);
-       glVertex2f(620, 1080);
         glVertex2f(600, 1100);
         glEnd();
 
-glColor3ub(255, 255, 255);
+        glBegin(GL_POLYGON);
+        glVertex2f(600, 1120);
+        glVertex2f(620, 1080);
+        glVertex2f(600, 1100);
+        glEnd();
 
         glBegin(GL_POLYGON);
         glVertex2f(580, 1100);
@@ -87,64 +75,66 @@ glColor3ub(255, 255, 255);
         glVertex2f(600, 1080);
         glEnd();
 
-        // star 2
-      glColor3ub(255, 255, 255);
+        // Star 2
+        glColor3ub(255, 255, 255);
         glBegin(GL_POLYGON);
-       glVertex2f(660, 1120);
-       glVertex2f(640, 1080);
+        glVertex2f(660, 1120);
+        glVertex2f(640, 1080);
         glVertex2f(660, 1100);
         glEnd();
 
-        glColor3ub(255, 255, 255);
         glBegin(GL_POLYGON);
-       glVertex2f(660, 1120);
+        glVertex2f(660, 1120);
         glVertex2f(680, 1080);
         glVertex2f(660, 1100);
         glEnd();
 
-      glColor3ub(255, 255, 255);
         glBegin(GL_POLYGON);
         glVertex2f(640, 1100);
-       glVertex2f(680, 1100);
+        glVertex2f(680, 1100);
         glVertex2f(660, 1080);
         glEnd();
     }
 }
-void plane(){
+
+// plane
+void plane() {
     glPushMatrix();
-    glTranslatef(planePosX, 0, 0); // Translate the plane horizontally
-    glColor3ub(0, 102, 204); // Blue plane body
+    glTranslatef(planePosX, 0, 0);
+
+    // Plane body
+    glColor3ub(0, 102, 204);
     glBegin(GL_POLYGON);
     glVertex2f(570, 910);
     glVertex2f(768, 913);
     glVertex2f(750, 850);
     glVertex2f(539, 845);
     glEnd();
-
-    glColor3ub(204, 0, 0); // Red wing
+    //
+    glColor3ub(204, 0, 0);
     glBegin(GL_POLYGON);
     glVertex2f(768, 913);
     glVertex2f(814, 953);
     glVertex2f(843, 953);
     glVertex2f(750, 850);
     glEnd();
-
-    glColor3ub(204, 0, 0); // Red bottom wing
+    //
+    glColor3ub(204, 0, 0);
     glBegin(GL_POLYGON);
     glVertex2f(501, 873);
     glVertex2f(789, 873);
     glVertex2f(750, 850);
     glVertex2f(539, 845);
     glEnd();
-
-    glColor3ub(230, 230, 230); // Light gray highlight
+    //
+    glColor3ub(230, 230, 230);
     glBegin(GL_POLYGON);
     glVertex2f(501.4236986901527, 873.9999236979464);
     glVertex2f(570.2523412282366, 910.3807776109325);
     glVertex2f(556, 873);
     glEnd();
-
-    glColor3ub(100, 100, 100);  // Darker gray for details
+    //
+    glColor3ub(100, 100, 100);
     glBegin(GL_POLYGON);
     glVertex2f(659, 848);
     glVertex2f(682.344701933116, 823.8533412773442);
@@ -152,7 +142,8 @@ void plane(){
     glVertex2f(693.1273870115938, 848.9627981394879);
     glEnd();
 
-    glColor3ub(100, 100, 100);  // Darker gray tail
+    // tail
+    glColor3ub(100, 100, 100);
     glBegin(GL_POLYGON);
     glVertex2f(658, 911);
     glVertex2f(695.8062440991109, 942.9567808612461);
@@ -160,78 +151,32 @@ void plane(){
     glVertex2f(694, 912);
     glEnd();
 
-    // Windows of the plane (black)
+    // Windows of the plane
     glColor3ub(0, 0, 0);
-    glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(572, 888);
-    for (int i = 0; i <= 360; i++) {
-        float angle = i * 3.14159 / 180;
-        float x = 572 + 10 * cos(angle);
-        float y = 888 + 10 * sin(angle);
-        glVertex2f(x, y);
+    for (int i = 0; i < 6; i++) {
+        glBegin(GL_TRIANGLE_FAN);
+        glVertex2f(572 + i * 26, 888);
+        for (int j = 0; j <= 360; j++) {
+            float angle = j * 3.14159 / 180;
+            float x = 572 + i * 26 + 10 * cos(angle);
+            float y = 888 + 10 * sin(angle);
+            glVertex2f(x, y);
+        }
+        glEnd();
     }
-    glEnd();
 
-    glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(594, 888);
-    for (int i = 0; i <= 360; i++) {
-        float angle = i * 3.14159 / 180;
-        float x = 594 + 10 * cos(angle);
-        float y = 888 + 10 * sin(angle);
-        glVertex2f(x, y);
-    }
-    glEnd();
-
-    glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(618, 888);
-    for (int i = 0; i <= 360; i++) {
-        float angle = i * 3.14159 / 180;
-        float x = 618 + 10 * cos(angle);
-        float y = 888 + 10 * sin(angle);
-        glVertex2f(x, y);
-    }
-    glEnd();
-
-    glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(641, 888);
-    for (int i = 0; i <= 360; i++) {
-        float angle = i * 3.14159 / 180;
-        float x = 641 + 10 * cos(angle);
-        float y = 888 + 10 * sin(angle);
-        glVertex2f(x, y);
-    }
-    glEnd();
-
-    glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(665, 888);
-    for (int i = 0; i <= 360; i++) {
-        float angle = i * 3.14159 / 180;
-        float x = 665 + 10 * cos(angle);
-        float y = 888 + 10 * sin(angle);
-        glVertex2f(x, y);
-    }
-    glEnd();
-
-    glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(688, 888);
-    for (int i = 0; i <= 360; i++) {
-        float angle = i * 3.14159 / 180;
-        float x = 688 + 10 * cos(angle);
-        float y = 888 + 10 * sin(angle);
-        glVertex2f(x, y);
-    }
-    glEnd();
-     glPopMatrix();
+    glPopMatrix();
 }
 
+// hills
 void hill() {
     if (day) {
-       glColor3ub(0, 255, 0);
-// Day: Green hills
+        glColor3ub(0, 255, 0);
     } else {
-       glColor3ub(25, 76, 25);
- // Night: Dark green hills
+        glColor3ub(25, 76, 25);
     }
+
+    // Draw multiple hills using triangles
     glBegin(GL_TRIANGLES);
     glVertex2f(150, 600);
     glVertex2f(300, 700);
@@ -269,311 +214,281 @@ void hill() {
     glEnd();
 }
 
+//  umbrella
 void umbrella() {
-
-    // Umbrella drawing (unchanged)
-glColor3ub(128, 89, 13);
- // Brown color for the pole
+    // Umbrella 1
+    glColor3ub(128, 89, 13);
     glBegin(GL_LINES);
-    glVertex2f(200, 100); // Bottom of the pole (P1)
-    glVertex2f(200, 200); // Top of the pole (O1)
+    glVertex2f(200, 100); // Bottom
+    glVertex2f(200, 200); // Top
     glEnd();
 
-    glColor3ub(255, 0, 0);
- // Red color for the umbrella top
-     glBegin(GL_TRIANGLES);
+    glColor3ub(255, 0, 0); // umbrella top
+    glBegin(GL_TRIANGLES);
     glVertex2f(200, 300);
     glVertex2f(100, 200);
     glVertex2f(300, 200);
     glEnd();
-//chair
-    glPushMatrix();
-    glColor3ub(255,255,255);
+
+    // Chair 1
+    glColor3ub(255, 255, 255);
     glBegin(GL_QUADS);
-    glVertex2f(240,100);
-    glVertex2f(260,60);
+    glVertex2f(240, 100);
+    glVertex2f(260, 60);
     glVertex2f(300, 80);
     glVertex2f(280, 100);
     glEnd();
-     glColor3ub(255,255,255);
+
     glBegin(GL_QUADS);
-    glVertex2f(260,60);
-    glVertex2f(380,60);
+    glVertex2f(260, 60);
+    glVertex2f(380, 60);
     glVertex2f(380, 80);
     glVertex2f(300, 80);
     glEnd();
 
-    // Second Umbrella
-   glColor3ub(128, 89, 13);
- // Brown color for the pole
+    // Umbrella 2
+    glColor3ub(128, 89, 13);
     glBegin(GL_LINES);
-    glVertex2f(500, 100); // Bottom of the pole (P2)
-    glVertex2f(500, 200); // Top of the pole (O2)
+    glVertex2f(500, 100); // Bottom
+    glVertex2f(500, 200); // Top
     glEnd();
 
-   glColor3ub(255, 0, 0);
- // Red color for the umbrella top
-    glBegin(GL_TRIANGLE_FAN);
-      glBegin(GL_TRIANGLES);
+    glColor3ub(255, 0, 0); // Red  umbrella top
+    glBegin(GL_TRIANGLES);
     glVertex2f(500, 300);
     glVertex2f(400, 200);
     glVertex2f(600, 200);
     glEnd();
-//chair
-    glPushMatrix();
-    glColor3ub(255,255,255);
+
+    // Chair 2
+    glColor3ub(255, 255, 255);
     glBegin(GL_QUADS);
     glVertex2f(560, 100);
     glVertex2f(580, 60);
     glVertex2f(640, 80);
     glVertex2f(620, 100);
     glEnd();
-     glColor3ub(255,255,255);
+
     glBegin(GL_QUADS);
     glVertex2f(580, 60);
     glVertex2f(640, 80);
     glVertex2f(760, 80);
     glVertex2f(740, 60);
     glEnd();
-
 }
+
+//  tower
 void tower() {
-    // Triangle top (red)
-   glColor3ub(255, 0, 0);
- // Red color
+    // Triangle top
+    glColor3ub(255, 0, 0);
     glBegin(GL_TRIANGLES);
-        glVertex2f(900, 200);
-        glVertex2f(1000, 250);
-        glVertex2f(1100, 200);
+    glVertex2f(900, 200);
+    glVertex2f(1000, 250);
+    glVertex2f(1100, 200);
     glEnd();
 
-    // Triangle legs (brown)
-   glColor3ub(128, 89, 13);
- // Brown color
-    glLineWidth(5.0f); // Set line thickness to 5 pixels
-    glBegin(GL_LINES);
-        glVertex2f(900, 200); // Left leg
-        glVertex2f(900, 150);
-        glVertex2f(1100, 200); // Right leg
-        glVertex2f(1100, 150);
-    glEnd();
-
-    // Box body (white)
-    glColor3ub(255, 255, 255); // White color
-    glBegin(GL_QUADS);
-        glVertex2f(850, 150);
-        glVertex2f(1150, 150);
-        glVertex2f(1150, 100);
-        glVertex2f(850, 100);
-    glEnd();
-
-    // Two legs (brown)
+    // Triangle legs
     glColor3ub(128, 89, 13);
- // Brown color
-    glLineWidth(5.0f); // Set line thickness to 5 pixels
+    glLineWidth(5.0f);
     glBegin(GL_LINES);
-        glVertex2f(850, 100); // Left leg
-        glVertex2f(800, 50);
-        glVertex2f(1150, 100); // Right leg
-        glVertex2f(1200, 50);
-    glEnd();
-     glBegin(GL_LINES);
-        glVertex2f(980, 100); // Left leg
-        glVertex2f(1020, 100);
-        glVertex2f(980, 80); // Right leg
-        glVertex2f(1020, 80);
-        glVertex2f(980, 60); // Right leg
-        glVertex2f(1020, 60);
-
+    glVertex2f(900, 200); // Left leg
+    glVertex2f(900, 150);
+    glVertex2f(1100, 200); // Right leg
+    glVertex2f(1100, 150);
     glEnd();
 
+    // Box body
+    glColor3ub(255, 255, 255);
+    glBegin(GL_QUADS);
+    glVertex2f(850, 150);
+    glVertex2f(1150, 150);
+    glVertex2f(1150, 100);
+    glVertex2f(850, 100);
+    glEnd();
 
+    // Two leg
+    glColor3ub(128, 89, 13);
+    glLineWidth(5.0f);
+    glBegin(GL_LINES);
+    glVertex2f(850, 100); // Left leg
+    glVertex2f(800, 50);
+    glVertex2f(1150, 100); // Right leg
+    glVertex2f(1200, 50);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(980, 100); // Left leg
+    glVertex2f(1020, 100);
+    glVertex2f(980, 80); // Right leg
+    glVertex2f(1020, 80);
+    glVertex2f(980, 60); // Right leg
+    glVertex2f(1020, 60);
+    glEnd();
 }
 
-
+//   sun / moon
 void sun() {
-    if (day){
-        glColor3ub(255, 255, 0);
-
+    if (day) {
+        glColor3ub(255, 255, 0); // Yellow color for the sun
+    } else {
+        glColor3ub(255, 255, 255); // White color for the moon
     }
-    else{
-       glColor3ub(255, 255, 255);
 
-    }
- // Yellow color for the sun
     glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(1100, 1000); // Center of the sun
+    glVertex2f(1100, 1000); // Center of the sun/moon
     for (int i = 0; i <= 360; i++) {
-        float angle = i * 3.14159 / 180; // Convert degrees to radians
-        float x = 1100 + 80 * cos(angle); // Horizontal radius: 80
-        float y = 1000 + 80 * sin(angle); // Vertical radius: 80
+        float angle = i * 3.14159 / 180;
+        float x = 1100 + 80 * cos(angle);
+        float y = 1000 + 80 * sin(angle);
         glVertex2f(x, y);
     }
     glEnd();
 }
 
+//  cloud
 void drawCloud(float centerX, float centerY) {
-    // Circle 1 (Left)
-       if (day) {
-        glColor3ub(255, 255, 255);
- // Day: White clouds
+    if (day) {
+        glColor3ub(255, 255, 255); // Day White clouds
     } else {
-       glColor3ub(128, 128, 128);
- // Night: Gray clouds
+        glColor3ub(128, 128, 128); // Night Gray clouds
     }
+
+    // Circle 1 Left
     glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(centerX - 50, centerY); // Center of the first circle
+    glVertex2f(centerX - 50, centerY);
     for (int i = 0; i <= 360; i++) {
-        float angle = i * 3.14159 / 180; // Convert degrees to radians
-        float x = (centerX - 50) + 40 * cos(angle); // Radius: 40
+        float angle = i * 3.14159 / 180;
+        float x = (centerX - 50) + 40 * cos(angle);
         float y = centerY + 40 * sin(angle);
         glVertex2f(x, y);
     }
     glEnd();
 
-    // Circle 2 (Middle)
+    // Circle 2 Middle
     glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(centerX, centerY); // Center of the second circle
+    glVertex2f(centerX, centerY);
     for (int i = 0; i <= 360; i++) {
         float angle = i * 3.14159 / 180;
-        float x = centerX + 50 * cos(angle); // Radius: 50
+        float x = centerX + 50 * cos(angle);
         float y = centerY + 50 * sin(angle);
         glVertex2f(x, y);
     }
     glEnd();
 
-    // Circle 3 (Right)
+    // Circle 3 Right
     glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(centerX + 50, centerY); // Center of the third circle
+    glVertex2f(centerX + 50, centerY);
     for (int i = 0; i <= 360; i++) {
         float angle = i * 3.14159 / 180;
-        float x = (centerX + 50) + 40 * cos(angle); // Radius: 40
+        float x = (centerX + 50) + 40 * cos(angle);
         float y = centerY + 40 * sin(angle);
         glVertex2f(x, y);
     }
     glEnd();
 }
 
+//  air balloon
 void hotAirBalloon() {
     glPushMatrix();
-    glTranslatef(balloonPosX, 0, 0); // Translate the balloon horizontally
+    glTranslatef(balloonPosX, 0, 0);
 
-    // Balloon Envelope (Red semicircle)
+    // Balloon
     glColor3ub(255, 0, 0);
-
     glBegin(GL_TRIANGLE_FAN);
     glVertex2f(250, 1000); // Center of the semicircle
     for (int i = 0; i <= 180; i++) {
         float angle = i * 3.14159 / 180;
-        float x = 250 + 70 * cos(angle); // Horizontal radius: 70
-        float y = 1000 + 70 * sin(angle); // Vertical radius: 70
+        float x = 250 + 70 * cos(angle);
+        float y = 1000 + 70 * sin(angle);
         glVertex2f(x, y);
     }
     glEnd();
 
-    // Basket (Brown rectangle)
+    // Box
     glColor3ub(128, 89, 13);
-
     glBegin(GL_QUADS);
-    glVertex2f(200, 850); // Top-left corner (A3)
-    glVertex2f(300, 850); // Top-right corner (B3)
-    glVertex2f(300, 800); // Bottom-right corner
-    glVertex2f(200, 800); // Bottom-left corner
+    glVertex2f(200, 850);
+    glVertex2f(300, 850);
+    glVertex2f(300, 800);
+    glVertex2f(200, 800);
     glEnd();
 
-    // Ropes (Two lines connecting balloon to basket)
-    if (day){
-        glColor3ub(255, 255, 0);
-
-    }
-    else{
-       glColor3ub(255, 255, 255);
-
+    // Ropes
+    if (day) {
+        glColor3ub(255, 255, 0); // Yellow ropes at day
+    } else {
+        glColor3ub(255, 255, 255); // White ropes at night
     }
     glBegin(GL_LINES);
-
-    // Left rope: Connects bottom-left of balloon to top-left of basket
-    glVertex2f(180,1000); // Start at balloon (x=200, y=930)
-    glVertex2f(200, 850);             // End at basket's top-left (A3)
-
-    // Right rope: Connects bottom-right of balloon to top-right of basket
-    glVertex2f(320,1000); // Start at balloon (x=300, y=930)
-    glVertex2f(300, 850);            // End at basket's top-right (B3)
-
+    glVertex2f(180, 1000);
+    glVertex2f(200, 850);
+    glVertex2f(320, 1000);
+    glVertex2f(300, 850);
     glEnd();
 
     glPopMatrix();
 }
 
+//  rain
 void drawRain() {
     if (!raining) return; // Only draw rain if it's raining
 
-    float rainAngle = 30.0f; // Angle of the rain (30 degrees)
-    float angleRadians = rainAngle * 3.14159f / 180.0f; // Convert to radians
+    float rainAngle = 30.0f; // Angle of the rain
+    float angleRadians = rainAngle * 3.14159f / 180.0f;
     float speedFactor = 2.0f; // Speed of the rain
 
-    // Calculate horizontal and vertical offsets based on the angle
+
     float xOffset = speedFactor * cos(angleRadians);
     float yOffset = speedFactor * sin(angleRadians);
 
-    glColor3ub(128, 128, 255);
- // Light blue color for raindrops
-
-    // Increase line width to make raindrops bolder
-    glLineWidth(3.0f); // Set line width to 3.0 (default is 1.0)
+    glColor3ub(128, 128, 255); // Light blue color for raindrops
+    glLineWidth(3.0f); // Set line width
 
     for (int i = 0; i < 1000; i++) {
-        // Generate random positions for raindrops
-        float x = (rand() % 1500); // Random x position (0 to 1500)
-        float y = (rand() % 1200); // Random y position (0 to 1200)
+        float x = (rand() % 1500); // Random x position
+        float y = (rand() % 1200); // Random y position
 
-        // Draw a raindrop as a line
         glBegin(GL_LINES);
         glVertex2f(x, y); // Start of the raindrop
         glVertex2f(x + xOffset, y - yOffset); // End of the raindrop
         glEnd();
     }
 
-    // Reset line width to default (optional)
-    glLineWidth(1.0f);
+    glLineWidth(1.0f); // Reset line width to default
 }
 
-
-
+// Function to draw all objects
 void draw_object() {
     // Adjust the full background color based on the time of day
     if (day) {
-       glColor3ub(159, 237, 254);
- // Light blue for day
+        glColor3ub(159, 237, 254); // Light blue for day
     } else {
-       glColor3ub(0, 0, 0);
-
+        glColor3ub(0, 0, 0); // Black for night
     }
 
-    // Cover the entire screen (sky)
+    //sky
     glBegin(GL_QUADS);
-    glVertex2f(0, 1200);   // Top-left
+    glVertex2f(0, 1200); // Top-left
     glVertex2f(1500, 1200); // Top-right
-    glVertex2f(1500, 0);    // Bottom-right (fixed)
-    glVertex2f(0, 0);       // Bottom-left (fixed)
+    glVertex2f(1500, 0); // Bottom-right
+    glVertex2f(0, 0); // Bottom-left
     glEnd();
 
-    sun(); // Draw the sun (or moon)
+    sun();// the sun / moon
 
-    // Draw clouds at their current positions
-    drawCloud(cloud1PosX, 850);   // Cloud 1
-    drawCloud(cloud2PosX, 1050);  // Cloud 2
-    drawCloud(cloud3PosX, 950);   // Cloud 3
-// **Sea Color**
+    // Draw clouds
+    drawCloud(cloud1PosX, 850); // Cloud 1
+    drawCloud(cloud2PosX, 1050); // Cloud 2
+    drawCloud(cloud3PosX, 950); // Cloud 3
+
+    // Sea color
     if (day) {
-       glColor3ub(0, 128, 204);
- // Day sea (blue)
+        glColor3ub(0, 128, 204); // Day sea
     } else {
-        glColor3ub(0, 0, 102);
- // Night sea (dark blue)
+        glColor3ub(0, 0, 102); // Night sea
     }
-    // Draw sea
 
+    // sea
     glBegin(GL_QUADS);
     glVertex2f(0, 600);
     glVertex2f(1500, 600);
@@ -581,14 +496,14 @@ void draw_object() {
     glVertex2f(0, 300);
     glEnd();
 
-    // **Sand Color**
+    // Sand color
     if (day) {
-      glColor3ub(230, 204, 153);
- // Day sand (light brown)
+        glColor3ub(230, 204, 153); // Day sand
     } else {
-       glColor3ub(77, 51, 26);
- // Night sand (dark brown)
+        glColor3ub(77, 51, 26); // Night sand
     }
+
+    //  sand
     glBegin(GL_QUADS);
     glVertex2f(0, 300);
     glVertex2f(1500, 300);
@@ -596,7 +511,7 @@ void draw_object() {
     glVertex2f(0, 0);
     glEnd();
 
-    // Draw objects
+    // objects
     boat();
     hill();
     umbrella();
@@ -605,54 +520,52 @@ void draw_object() {
     drawRain();
     tower();
     plane();
-
-
-
-
 }
 
-
+// Function to update positions of moving objects
 void updatePositions(int value) {
-    // Update boat position using the boatSpeed variable
-    boatPosX += boatSpeed; // Use boatSpeed instead of a fixed value
+    // Update boat position
+    boatPosX += boatSpeed;
     if (boatPosX > 1500) {
         boatPosX = -400;
     }
 
     // Update cloud positions
-    cloud1PosX += 0.5f; // Move cloud 1 slowly
+    cloud1PosX += 0.5f;
     if (cloud1PosX > 1500) {
         cloud1PosX = -200;
     }
 
-    cloud2PosX += 0.4f; // Move cloud 2 slowly
+    cloud2PosX += 0.4f;
     if (cloud2PosX > 1500) {
         cloud2PosX = -200;
     }
 
-    cloud3PosX += 0.3f; // Move cloud 3 slowly
+    cloud3PosX += 0.3f;
     if (cloud3PosX > 1500) {
         cloud3PosX = -200;
     }
 
     // Update balloon position
-    balloonPosX += 1.0f; // Move balloon horizontally
+    balloonPosX += 1.0f;
     if (balloonPosX > 1500) {
-        balloonPosX = -200; // Reset position when it goes off-screen
+        balloonPosX = -200;
     }
-     planePosX -= 4.0f; // Move the plane to the left
-    if (planePosX < -800) { // Reset position when it goes off-screen
+
+    // Update plane position
+    planePosX -= 7.0f;
+    if (planePosX < -800) {
         planePosX = 1500;
     }
 
-
-
-    glutPostRedisplay(); // Request redisplay
-    glutTimerFunc(30, updatePositions, 0); // Call this function again after 30ms
+    glutPostRedisplay();
+    glutTimerFunc(30, updatePositions, 0);
 }
+
+// Keyboard input handling
 void keyboard(unsigned char key, int x, int y) {
     if (key == 'd' || key == 'D') {
-        day = true;  // Switch to day mode
+        day = true; // Switch to day mode
     } else if (key == 'n' || key == 'N') {
         day = false; // Switch to night mode
     } else if (key == 'a' || key == 'A') {
@@ -671,12 +584,14 @@ void keyboard(unsigned char key, int x, int y) {
     glutPostRedisplay(); // Redraw the scene with the new mode
 }
 
+// Display function
 void display(void) {
     glClear(GL_COLOR_BUFFER_BIT);
     draw_object();
     glFlush();
 }
 
+// Initialization function
 void init(void) {
     glClearColor(0.6196f, 0.9333f, 0.9960f, 1.0f);
     glMatrixMode(GL_PROJECTION);
@@ -684,14 +599,14 @@ void init(void) {
     gluOrtho2D(0.0, 1500.0, 0.0, 1200.0);
 }
 
+// Main function
 int main(int argc, char** argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutInitWindowSize(1000, 600);
     glutInitWindowPosition(0, 0);
     glutCreateWindow("Sea Beach");
-glutKeyboardFunc(keyboard);
-
+    glutKeyboardFunc(keyboard);
     glutDisplayFunc(display);
     glutTimerFunc(30, updatePositions, 0); // Start the timer for animation
     init();
