@@ -19,34 +19,34 @@ void boat() {
     /// Boat 1
  glColor3f(0.83f, 0.69f, 0.22f);
     glBegin(GL_POLYGON);
-    glVertex3i(200, 500, 0);
-    glVertex3i(400, 500, 0);
-    glVertex3i(350, 450, 0);
-    glVertex3i(250, 450, 0);
+    glVertex2f(200, 500);
+   glVertex2f(400, 500);
+   glVertex2f(350, 450);
+   glVertex2f(250, 450);
     glEnd();
 
     glColor3f(0.9f, 0.9f, 0.9f);
     glBegin(GL_POLYGON);
-    glVertex3i(340, 540, 0);
-    glVertex3i(300, 500, 0);
-    glVertex3i(400, 500, 0);
+    glVertex2f(340, 540);
+    glVertex2f(300, 500);
+    glVertex2f(400, 500);
 
     glEnd();
 
     /// Boat 2
    glColor3f(0.9f, 0.8f, 0.6f);
     glBegin(GL_POLYGON);
-    glVertex3i(800, 500, 0);
-    glVertex3i(1000, 500, 0);
-    glVertex3i(950, 450, 0);
-    glVertex3i(850, 450, 0);
+   glVertex2f(800, 500);
+   glVertex2f(1000, 500);
+   glVertex2f(950, 450);
+    glVertex2f(850, 450);
     glEnd();
 
   glColor3f(0.4f, 0.4f, 0.4f);
     glBegin(GL_POLYGON);
-    glVertex3i(940, 540, 0);
-    glVertex3i(880, 500, 0);
-    glVertex3i(1000, 500, 0);
+    glVertex2f(940, 540);
+   glVertex2f(880, 500);
+   glVertex2f(1000, 500);
 
     glEnd();
 
@@ -58,45 +58,45 @@ void star() {
         //star1
         glColor3f(1, 1, 1);
         glBegin(GL_POLYGON);
-        glVertex3i(600, 1120, 0);
-        glVertex3i(580, 1080, 0);
-        glVertex3i(600, 1100, 0);
+        glVertex2f(600, 1120);
+        glVertex2f(580, 1080);
+       glVertex2f(600, 1100);
         glEnd();
 
         glColor3f(1, 1, 1);
         glBegin(GL_POLYGON);
-        glVertex3i(600, 1120, 0);
-        glVertex3i(620, 1080, 0);
-        glVertex3i(600, 1100, 0);
+        glVertex2f(600, 1120);
+       glVertex2f(620, 1080);
+        glVertex2f(600, 1100);
         glEnd();
 
         glColor3f(1, 1, 1);
         glBegin(GL_POLYGON);
-        glVertex3i(580, 1100, 0);
-        glVertex3i(620, 1100, 0);
-        glVertex3i(600, 1080, 0);
+        glVertex2f(580, 1100);
+        glVertex2f(620, 1100);
+        glVertex2f(600, 1080);
         glEnd();
 
         // star 2
         glColor3f(1, 1, 1);
         glBegin(GL_POLYGON);
-        glVertex3i(660, 1120, 0);
-        glVertex3i(640, 1080, 0);
-        glVertex3i(660, 1100, 0);
+       glVertex2f(660, 1120);
+       glVertex2f(640, 1080);
+        glVertex2f(660, 1100);
         glEnd();
 
         glColor3f(1, 1, 1);
         glBegin(GL_POLYGON);
-        glVertex3i(660, 1120, 0);
-        glVertex3i(680, 1080, 0);
-        glVertex3i(660, 1100, 0);
+       glVertex2f(660, 1120);
+        glVertex2f(680, 1080);
+        glVertex2f(660, 1100);
         glEnd();
 
         glColor3f(1, 1, 1);
         glBegin(GL_POLYGON);
-        glVertex3i(640, 1100, 0);
-        glVertex3i(680, 1100, 0);
-        glVertex3i(660, 1080, 0);
+        glVertex2f(640, 1100);
+       glVertex2f(680, 1100);
+        glVertex2f(660, 1080);
         glEnd();
     }
 }
@@ -208,6 +208,45 @@ void umbrella() {
     glEnd();
 
 }
+void tower() {
+    // Triangle top (red)
+    glColor3f(1.0f, 0.0f, 0.0f); // Red color
+    glBegin(GL_TRIANGLES);
+        glVertex2f(900, 200);
+        glVertex2f(1000, 250);
+        glVertex2f(1100, 200);
+    glEnd();
+
+    // Triangle legs (brown)
+    glColor3f(0.5f, 0.35f, 0.05f); // Brown color
+    glLineWidth(5.0f); // Set line thickness to 5 pixels
+    glBegin(GL_LINES);
+        glVertex2f(900, 200); // Left leg
+        glVertex2f(900, 150);
+        glVertex2f(1100, 200); // Right leg
+        glVertex2f(1100, 150);
+    glEnd();
+
+    // Box body (white)
+    glColor3ub(255, 255, 255); // White color
+    glBegin(GL_QUADS);
+        glVertex2f(850, 150);
+        glVertex2f(1150, 150);
+        glVertex2f(1150, 100);
+        glVertex2f(850, 100);
+    glEnd();
+
+    // Two legs (brown)
+    glColor3f(0.5f, 0.35f, 0.05f); // Brown color
+    glLineWidth(5.0f); // Set line thickness to 5 pixels
+    glBegin(GL_LINES);
+        glVertex2f(850, 100); // Left leg
+        glVertex2f(800, 50);
+        glVertex2f(1150, 100); // Right leg
+        glVertex2f(1200, 50);
+    glEnd();
+}
+
 
 void sun() {
     if (day){
@@ -407,6 +446,7 @@ void draw_object() {
     hotAirBalloon();
     star();
     drawRain();
+    tower();
 
 
 
