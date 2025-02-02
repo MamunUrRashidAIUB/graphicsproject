@@ -17,7 +17,7 @@ void boat() {
     glTranslatef(boatPosX, 0, 0); // Translate the boat horizontally based on boatPosX
 
     /// Boat 1
- glColor3f(0.83f, 0.69f, 0.22f);
+    glColor3ub(211, 176, 56);
     glBegin(GL_POLYGON);
     glVertex2f(200, 500);
    glVertex2f(400, 500);
@@ -25,7 +25,8 @@ void boat() {
    glVertex2f(250, 450);
     glEnd();
 
-    glColor3f(0.9f, 0.9f, 0.9f);
+glColor3ub(229, 229, 229);
+
     glBegin(GL_POLYGON);
     glVertex2f(340, 540);
     glVertex2f(300, 500);
@@ -34,7 +35,8 @@ void boat() {
     glEnd();
 
     /// Boat 2
-   glColor3f(0.9f, 0.8f, 0.6f);
+ glColor3ub(229, 204, 153);
+
     glBegin(GL_POLYGON);
    glVertex2f(800, 500);
    glVertex2f(1000, 500);
@@ -42,7 +44,8 @@ void boat() {
     glVertex2f(850, 450);
     glEnd();
 
-  glColor3f(0.4f, 0.4f, 0.4f);
+  glColor3ub(102, 102, 102);
+
     glBegin(GL_POLYGON);
     glVertex2f(940, 540);
    glVertex2f(880, 500);
@@ -56,21 +59,24 @@ void boat() {
 void star() {
     if (!day) { // Only draw stars if it's night
         //star1
-        glColor3f(1, 1, 1);
+        glColor3ub(255, 255, 255);
+
         glBegin(GL_POLYGON);
         glVertex2f(600, 1120);
         glVertex2f(580, 1080);
        glVertex2f(600, 1100);
         glEnd();
 
-        glColor3f(1, 1, 1);
+       glColor3ub(255, 255, 255);
+
         glBegin(GL_POLYGON);
         glVertex2f(600, 1120);
        glVertex2f(620, 1080);
         glVertex2f(600, 1100);
         glEnd();
 
-        glColor3f(1, 1, 1);
+glColor3ub(255, 255, 255);
+
         glBegin(GL_POLYGON);
         glVertex2f(580, 1100);
         glVertex2f(620, 1100);
@@ -78,21 +84,21 @@ void star() {
         glEnd();
 
         // star 2
-        glColor3f(1, 1, 1);
+      glColor3ub(255, 255, 255);
         glBegin(GL_POLYGON);
        glVertex2f(660, 1120);
        glVertex2f(640, 1080);
         glVertex2f(660, 1100);
         glEnd();
 
-        glColor3f(1, 1, 1);
+        glColor3ub(255, 255, 255);
         glBegin(GL_POLYGON);
        glVertex2f(660, 1120);
         glVertex2f(680, 1080);
         glVertex2f(660, 1100);
         glEnd();
 
-        glColor3f(1, 1, 1);
+      glColor3ub(255, 255, 255);
         glBegin(GL_POLYGON);
         glVertex2f(640, 1100);
        glVertex2f(680, 1100);
@@ -103,9 +109,11 @@ void star() {
 
 void hill() {
     if (day) {
-        glColor3f(0.0f, 1.0f, 0.0f); // Day: Green hills
+       glColor3ub(0, 255, 0);
+// Day: Green hills
     } else {
-        glColor3f(0.1f, 0.3f, 0.1f); // Night: Dark green hills
+       glColor3ub(25, 76, 25);
+ // Night: Dark green hills
     }
     glBegin(GL_TRIANGLES);
     glVertex2f(150, 600);
@@ -147,13 +155,15 @@ void hill() {
 void umbrella() {
 
     // Umbrella drawing (unchanged)
-    glColor3f(0.5f, 0.35f, 0.05f); // Brown color for the pole
+glColor3ub(128, 89, 13);
+ // Brown color for the pole
     glBegin(GL_LINES);
     glVertex2f(200, 100); // Bottom of the pole (P1)
     glVertex2f(200, 200); // Top of the pole (O1)
     glEnd();
 
-    glColor3f(1.0f, 0.0f, 0.0f); // Red color for the umbrella top
+    glColor3ub(255, 0, 0);
+ // Red color for the umbrella top
      glBegin(GL_TRIANGLES);
     glVertex2f(200, 300);
     glVertex2f(100, 200);
@@ -177,13 +187,15 @@ void umbrella() {
     glEnd();
 
     // Second Umbrella
-    glColor3f(0.5f, 0.35f, 0.05f); // Brown color for the pole
+   glColor3ub(128, 89, 13);
+ // Brown color for the pole
     glBegin(GL_LINES);
     glVertex2f(500, 100); // Bottom of the pole (P2)
     glVertex2f(500, 200); // Top of the pole (O2)
     glEnd();
 
-    glColor3f(1.0f, 0.0f, 0.0f); // Red color for the umbrella top
+   glColor3ub(255, 0, 0);
+ // Red color for the umbrella top
     glBegin(GL_TRIANGLE_FAN);
       glBegin(GL_TRIANGLES);
     glVertex2f(500, 300);
@@ -210,7 +222,8 @@ void umbrella() {
 }
 void tower() {
     // Triangle top (red)
-    glColor3f(1.0f, 0.0f, 0.0f); // Red color
+   glColor3ub(255, 0, 0);
+ // Red color
     glBegin(GL_TRIANGLES);
         glVertex2f(900, 200);
         glVertex2f(1000, 250);
@@ -218,7 +231,8 @@ void tower() {
     glEnd();
 
     // Triangle legs (brown)
-    glColor3f(0.5f, 0.35f, 0.05f); // Brown color
+   glColor3ub(128, 89, 13);
+ // Brown color
     glLineWidth(5.0f); // Set line thickness to 5 pixels
     glBegin(GL_LINES);
         glVertex2f(900, 200); // Left leg
@@ -237,7 +251,8 @@ void tower() {
     glEnd();
 
     // Two legs (brown)
-    glColor3f(0.5f, 0.35f, 0.05f); // Brown color
+    glColor3ub(128, 89, 13);
+ // Brown color
     glLineWidth(5.0f); // Set line thickness to 5 pixels
     glBegin(GL_LINES);
         glVertex2f(850, 100); // Left leg
@@ -250,10 +265,12 @@ void tower() {
 
 void sun() {
     if (day){
-        glColor3f(1.0f,1.0f,0.0f);
+        glColor3ub(255, 255, 0);
+
     }
     else{
-       glColor3f(1.0f, 1.0f, 1.0f);
+       glColor3ub(255, 255, 255);
+
     }
  // Yellow color for the sun
     glBegin(GL_TRIANGLE_FAN);
@@ -270,9 +287,11 @@ void sun() {
 void drawCloud(float centerX, float centerY) {
     // Circle 1 (Left)
        if (day) {
-        glColor3f(1.0f, 1.0f, 1.0f); // Day: White clouds
+        glColor3ub(255, 255, 255);
+ // Day: White clouds
     } else {
-        glColor3f(0.5f, 0.5f, 0.5f); // Night: Gray clouds
+       glColor3ub(128, 128, 128);
+ // Night: Gray clouds
     }
     glBegin(GL_TRIANGLE_FAN);
     glVertex2f(centerX - 50, centerY); // Center of the first circle
@@ -312,7 +331,8 @@ void hotAirBalloon() {
     glTranslatef(balloonPosX, 0, 0); // Translate the balloon horizontally
 
     // Balloon Envelope (Red semicircle)
-    glColor3f(1.0f, 0.0f, 0.0f);
+    glColor3ub(255, 0, 0);
+
     glBegin(GL_TRIANGLE_FAN);
     glVertex2f(250, 1000); // Center of the semicircle
     for (int i = 0; i <= 180; i++) {
@@ -324,7 +344,8 @@ void hotAirBalloon() {
     glEnd();
 
     // Basket (Brown rectangle)
-    glColor3f(0.5f, 0.35f, 0.05f);
+    glColor3ub(128, 89, 13);
+
     glBegin(GL_QUADS);
     glVertex2f(200, 850); // Top-left corner (A3)
     glVertex2f(300, 850); // Top-right corner (B3)
@@ -334,10 +355,12 @@ void hotAirBalloon() {
 
     // Ropes (Two lines connecting balloon to basket)
     if (day){
-        glColor3f(1.0f,1.0f,0.0f);
+        glColor3ub(255, 255, 0);
+
     }
     else{
-       glColor3f(1.0f, 1.0f, 1.0f);
+       glColor3ub(255, 255, 255);
+
     }
     glBegin(GL_LINES);
 
@@ -365,7 +388,8 @@ void drawRain() {
     float xOffset = speedFactor * cos(angleRadians);
     float yOffset = speedFactor * sin(angleRadians);
 
-    glColor3f(0.5f, 0.5f, 1.0f); // Light blue color for raindrops
+    glColor3ub(128, 128, 255);
+ // Light blue color for raindrops
 
     // Increase line width to make raindrops bolder
     glLineWidth(3.0f); // Set line width to 3.0 (default is 1.0)
@@ -392,9 +416,11 @@ void drawRain() {
 void draw_object() {
     // Adjust the full background color based on the time of day
     if (day) {
-        glColor3f(0.6196f, 0.9333f, 0.9960f); // Light blue for day
+       glColor3ub(159, 237, 254);
+ // Light blue for day
     } else {
-       glColor3f(0.0f, 0.0f, 0.0f);
+       glColor3ub(0, 0, 0);
+
     }
 
     // Cover the entire screen (sky)
@@ -413,9 +439,11 @@ void draw_object() {
     drawCloud(cloud3PosX, 950);   // Cloud 3
 // **Sea Color**
     if (day) {
-        glColor3f(0.0f, 0.5f, 0.8f); // Day sea (blue)
+       glColor3ub(0, 128, 204);
+ // Day sea (blue)
     } else {
-        glColor3f(0.0f, 0.0f, 0.4f); // Night sea (dark blue)
+        glColor3ub(0, 0, 102);
+ // Night sea (dark blue)
     }
     // Draw sea
 
@@ -428,9 +456,11 @@ void draw_object() {
 
     // **Sand Color**
     if (day) {
-        glColor3f(0.9f, 0.8f, 0.6f); // Day sand (light brown)
+      glColor3ub(230, 204, 153);
+ // Day sand (light brown)
     } else {
-        glColor3f(0.3f, 0.2f, 0.1f); // Night sand (dark brown)
+       glColor3ub(77, 51, 26);
+ // Night sand (dark brown)
     }
     glBegin(GL_QUADS);
     glVertex2f(0, 300);
