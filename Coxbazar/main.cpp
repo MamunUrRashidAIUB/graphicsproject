@@ -10,6 +10,7 @@ float balloonPosX = 200;
 float day =true;
 float boatSpeed = 2.0f;
 bool raining = false;
+float planePosX = 1500; // Initial position of the plane (off-screen to the right)
 
 
  // Set to false to stop rain
@@ -108,6 +109,119 @@ glColor3ub(255, 255, 255);
         glVertex2f(660, 1080);
         glEnd();
     }
+}
+void plane(){
+    glPushMatrix();
+    glTranslatef(planePosX, 0, 0); // Translate the plane horizontally
+    glColor3ub(0, 102, 204); // Blue plane body
+    glBegin(GL_POLYGON);
+    glVertex2f(570, 910);
+    glVertex2f(768, 913);
+    glVertex2f(750, 850);
+    glVertex2f(539, 845);
+    glEnd();
+
+    glColor3ub(204, 0, 0); // Red wing
+    glBegin(GL_POLYGON);
+    glVertex2f(768, 913);
+    glVertex2f(814, 953);
+    glVertex2f(843, 953);
+    glVertex2f(750, 850);
+    glEnd();
+
+    glColor3ub(204, 0, 0); // Red bottom wing
+    glBegin(GL_POLYGON);
+    glVertex2f(501, 873);
+    glVertex2f(789, 873);
+    glVertex2f(750, 850);
+    glVertex2f(539, 845);
+    glEnd();
+
+    glColor3ub(230, 230, 230); // Light gray highlight
+    glBegin(GL_POLYGON);
+    glVertex2f(501.4236986901527, 873.9999236979464);
+    glVertex2f(570.2523412282366, 910.3807776109325);
+    glVertex2f(556, 873);
+    glEnd();
+
+    glColor3ub(100, 100, 100);  // Darker gray for details
+    glBegin(GL_POLYGON);
+    glVertex2f(659, 848);
+    glVertex2f(682.344701933116, 823.8533412773442);
+    glVertex2f(709.8761589483496, 825.8198739212894);
+    glVertex2f(693.1273870115938, 848.9627981394879);
+    glEnd();
+
+    glColor3ub(100, 100, 100);  // Darker gray tail
+    glBegin(GL_POLYGON);
+    glVertex2f(658, 911);
+    glVertex2f(695.8062440991109, 942.9567808612461);
+    glVertex2f(715.5337787045539, 943.4626150818985);
+    glVertex2f(694, 912);
+    glEnd();
+
+    // Windows of the plane (black)
+    glColor3ub(0, 0, 0);
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2f(572, 888);
+    for (int i = 0; i <= 360; i++) {
+        float angle = i * 3.14159 / 180;
+        float x = 572 + 10 * cos(angle);
+        float y = 888 + 10 * sin(angle);
+        glVertex2f(x, y);
+    }
+    glEnd();
+
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2f(594, 888);
+    for (int i = 0; i <= 360; i++) {
+        float angle = i * 3.14159 / 180;
+        float x = 594 + 10 * cos(angle);
+        float y = 888 + 10 * sin(angle);
+        glVertex2f(x, y);
+    }
+    glEnd();
+
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2f(618, 888);
+    for (int i = 0; i <= 360; i++) {
+        float angle = i * 3.14159 / 180;
+        float x = 618 + 10 * cos(angle);
+        float y = 888 + 10 * sin(angle);
+        glVertex2f(x, y);
+    }
+    glEnd();
+
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2f(641, 888);
+    for (int i = 0; i <= 360; i++) {
+        float angle = i * 3.14159 / 180;
+        float x = 641 + 10 * cos(angle);
+        float y = 888 + 10 * sin(angle);
+        glVertex2f(x, y);
+    }
+    glEnd();
+
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2f(665, 888);
+    for (int i = 0; i <= 360; i++) {
+        float angle = i * 3.14159 / 180;
+        float x = 665 + 10 * cos(angle);
+        float y = 888 + 10 * sin(angle);
+        glVertex2f(x, y);
+    }
+    glEnd();
+
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2f(688, 888);
+    for (int i = 0; i <= 360; i++) {
+        float angle = i * 3.14159 / 180;
+        float x = 688 + 10 * cos(angle);
+        float y = 888 + 10 * sin(angle);
+        glVertex2f(x, y);
+    }
+    glEnd();
+     glPopMatrix();
 }
 
 void hill() {
@@ -490,6 +604,7 @@ void draw_object() {
     star();
     drawRain();
     tower();
+    plane();
 
 
 
@@ -524,6 +639,10 @@ void updatePositions(int value) {
     balloonPosX += 1.0f; // Move balloon horizontally
     if (balloonPosX > 1500) {
         balloonPosX = -200; // Reset position when it goes off-screen
+    }
+     planePosX -= 4.0f; // Move the plane to the left
+    if (planePosX < -800) { // Reset position when it goes off-screen
+        planePosX = 1500;
     }
 
 
