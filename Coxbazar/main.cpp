@@ -9,7 +9,10 @@ float cloud3PosX = 350; // Horizontal position of cloud 3
 float balloonPosX = 200;
 float day =true;
 float boatSpeed = 2.0f;
-bool raining = false; // Set to false to stop rain
+bool raining = false;
+
+
+ // Set to false to stop rain
 // Boat speed variable
 
 void boat() {
@@ -28,8 +31,8 @@ void boat() {
 glColor3ub(229, 229, 229);
 
     glBegin(GL_POLYGON);
+    glVertex2f(260, 500);
     glVertex2f(340, 540);
-    glVertex2f(300, 500);
     glVertex2f(400, 500);
 
     glEnd();
@@ -48,7 +51,7 @@ glColor3ub(229, 229, 229);
 
     glBegin(GL_POLYGON);
     glVertex2f(940, 540);
-   glVertex2f(880, 500);
+   glVertex2f(860, 500);
    glVertex2f(1000, 500);
 
     glEnd();
@@ -260,6 +263,17 @@ void tower() {
         glVertex2f(1150, 100); // Right leg
         glVertex2f(1200, 50);
     glEnd();
+     glBegin(GL_LINES);
+        glVertex2f(980, 100); // Left leg
+        glVertex2f(1020, 100);
+        glVertex2f(980, 80); // Right leg
+        glVertex2f(1020, 80);
+        glVertex2f(980, 60); // Right leg
+        glVertex2f(1020, 60);
+
+    glEnd();
+
+
 }
 
 
@@ -412,7 +426,6 @@ void drawRain() {
 
 
 
-
 void draw_object() {
     // Adjust the full background color based on the time of day
     if (day) {
@@ -480,6 +493,7 @@ void draw_object() {
 
 
 
+
 }
 
 
@@ -511,6 +525,8 @@ void updatePositions(int value) {
     if (balloonPosX > 1500) {
         balloonPosX = -200; // Reset position when it goes off-screen
     }
+
+
 
     glutPostRedisplay(); // Request redisplay
     glutTimerFunc(30, updatePositions, 0); // Call this function again after 30ms
